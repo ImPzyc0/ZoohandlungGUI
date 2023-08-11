@@ -1,0 +1,26 @@
+package com.daniel.infolk;
+
+import com.daniel.infolk.zoohandlung.Zoohandlung;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+       Timer timer = new Timer();
+
+        Zoohandlung handlung = new Zoohandlung("1");
+
+       timer.scheduleAtFixedRate(new TimerTask() {
+           @Override
+           public void run() {
+
+           }
+       }, 0, 100);
+
+    }
+
+
+}

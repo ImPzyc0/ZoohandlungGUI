@@ -1,0 +1,103 @@
+﻿[Files]
+File0=Zoohandlung-master\src\com\daniel\infolk\Main.java
+File1=Zoohandlung-master\src\com\daniel\infolk\zoohandlung\Pfleger.java
+File2=Zoohandlung-master\src\com\daniel\infolk\zoohandlung\tiere\hund\befehle\Befehl.java
+File3=Zoohandlung-master\src\com\daniel\infolk\zoohandlung\tiere\hund\befehle\Befehle.java
+File4=Zoohandlung-master\src\com\daniel\infolk\zoohandlung\tiere\hund\Hund.java
+File5=Zoohandlung-master\src\com\daniel\infolk\zoohandlung\tiere\hund\Hunderasse.java
+File6=Zoohandlung-master\src\com\daniel\infolk\zoohandlung\tiere\katze\Katze.java
+File7=Zoohandlung-master\src\com\daniel\infolk\zoohandlung\tiere\katze\Katzenrasse.java
+File8=Zoohandlung-master\src\com\daniel\infolk\zoohandlung\tiere\Tier.java
+File9=Zoohandlung-master\src\com\daniel\infolk\zoohandlung\Zoohandlung.java
+
+[Box:  - com.daniel.infolk.Main]
+X=2709
+Y=40
+MinVis=0
+ShowParameter=4
+SortOrder=0
+ShowIcons=1
+FontSize=12
+FontName=Segoe UI
+
+[Box:  - com.daniel.infolk.zoohandlung.Pfleger]
+X=1952
+Y=40
+MinVis=0
+ShowParameter=4
+SortOrder=0
+ShowIcons=1
+FontSize=12
+FontName=Segoe UI
+
+[Box:  - com.daniel.infolk.zoohandlung.tiere.hund.befehle.Befehl]
+X=1104
+Y=40
+MinVis=0
+ShowParameter=0
+SortOrder=0
+ShowIcons=0
+FontSize=12
+FontName=Segoe UI
+
+[Box:  - com.daniel.infolk.zoohandlung.tiere.hund.Hund]
+X=499
+Y=40
+MinVis=0
+ShowParameter=4
+SortOrder=0
+ShowIcons=1
+FontSize=12
+FontName=Segoe UI
+
+[Box:  - com.daniel.infolk.zoohandlung.tiere.katze.Katze]
+X=20
+Y=40
+MinVis=0
+ShowParameter=4
+SortOrder=0
+ShowIcons=1
+FontSize=12
+FontName=Segoe UI
+
+[Box:  - com.daniel.infolk.zoohandlung.tiere.Tier]
+X=1598
+Y=40
+MinVis=0
+ShowParameter=4
+SortOrder=0
+ShowIcons=1
+FontSize=12
+FontName=Segoe UI
+
+[Box:  - com.daniel.infolk.zoohandlung.Zoohandlung]
+X=2306
+Y=40
+MinVis=0
+ShowParameter=4
+SortOrder=0
+ShowIcons=1
+FontSize=12
+FontName=Segoe UI
+
+[Diagram]
+comments=0
+OffsetX=0
+OffsetY=0
+Visibility=0
+ShowParameter=4
+SortOrder=0
+ShowIcons=1
+ShowConnections=0
+Fontname=Segoe UI
+Fontsize=12
+ShowObjectDiagram=0
+
+[Connections]
+V0=com.daniel.infolk.zoohandlung.Pfleger#com.daniel.infolk.zoohandlung.tiere.Tier#AssociationDirected####0#0#0###0#0
+V1=com.daniel.infolk.zoohandlung.tiere.hund.Hund#com.daniel.infolk.zoohandlung.tiere.Tier#Inheritends####0#0#0###0#0
+V2=com.daniel.infolk.zoohandlung.tiere.katze.Katze#com.daniel.infolk.zoohandlung.tiere.Tier#Inheritends####0#0#0###0#0
+
+[Interactive]
+I0=
+
