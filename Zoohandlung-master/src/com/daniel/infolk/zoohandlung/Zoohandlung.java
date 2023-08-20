@@ -13,41 +13,41 @@ public class Zoohandlung {
 
     private int geld = 0;
 
-    public void Update(){
+    public void Update() {
 
-    for (Pfleger pfl : pfleger) { 
-      int zaehler = 0;
-      pfl.versorgTier(tiere.get(zaehler));
-      zaehler++;  
-    }                                                                                           
+        for (Pfleger pfl : pfleger) {
+            int zaehler = 0;
+            pfl.versorgTier(tiere.get(zaehler));
+            zaehler++;
+        }
 
     }
 
-    public Zoohandlung(String ladenId){
+    public Zoohandlung(String ladenId) {
         this.ladenId = ladenId;
 
         this.pfleger = new ArrayList<>();
         this.tiere = new ArrayList<>();
     }
 
-    public void schließen(){
-        System.out.println("geschlossen "+ ladenId);
+    public void schließen() {
+        System.out.println("geschlossen " + ladenId);
     }
 
-    public void oeffnen(){
-        System.out.println("geöffnet "+ ladenId);
+    public void oeffnen() {
+        System.out.println("geöffnet " + ladenId);
     }
 
-    public void neuesTier(Tier tier){
+    public void neuesTier(Tier tier) {
         tiere.add(tier);
     }
 
-    public void verkaufTier(Tier tier){
+    public void verkaufTier(Tier tier) {
         tiere.remove(tier);
     }
-  
-    public void neuerPfleger(){
-        pfleger.add(new Pfleger()); 
+
+    public void neuerPfleger() {
+        pfleger.add(new Pfleger());
     }
 
 }

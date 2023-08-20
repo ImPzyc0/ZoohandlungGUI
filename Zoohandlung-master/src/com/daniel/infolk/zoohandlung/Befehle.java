@@ -13,11 +13,11 @@ public enum Befehle {
 
     private Befehl befehl;
 
-    Befehle(Befehl befehl){
+    Befehle(Befehl befehl) {
         this.befehl = befehl;
     }
 
-    public void fuereBefehlAus(){
+    public void fuereBefehlAus() {
         befehl.fuehreBefehlAus();
     }
 }

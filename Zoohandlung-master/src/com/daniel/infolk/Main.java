@@ -11,22 +11,22 @@ public class Main {
 
     public static void main(String[] args) {
 
-       Timer timer = new Timer();
+        Timer timer = new Timer();
 
-       Zoohandlung handlung = new Zoohandlung("1");
-    
-       handlung.neuerPfleger();
-    
-       handlung.neuesTier(new Katze("nunn", 20, 10, Katzenrasse.ORANGE));
+        Zoohandlung handlung = new Zoohandlung("1");
 
-       timer.scheduleAtFixedRate(new TimerTask() {
-           @Override
-           public void run() {
-               handlung.oeffnen();
-               handlung.Update();
-               handlung.schließen();
-           }
-       }, 0, 100);
+        handlung.neuerPfleger();
+
+        handlung.neuesTier(new Katze("nunn", 20, 10, Katzenrasse.ORANGE));
+
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                handlung.oeffnen();
+                handlung.Update();
+                handlung.schließen();
+            }
+        }, 0, 100);
 
     }
 

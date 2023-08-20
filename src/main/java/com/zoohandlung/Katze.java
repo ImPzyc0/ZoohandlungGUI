@@ -1,26 +1,28 @@
-package com.daniel.infolk.zoohandlung;
+package com.zoohandlung;
 
 public class Katze extends Tier {
 
-    public Katzenrasse getRasse() {
+    public String getRasse() {
         return rasse;
     }
 
-    private final Katzenrasse rasse;
+    private final String rasse;
 
-    public Katze(String name, int alter, Katzenrasse rasse) {
+    public Katze(String name, int alter, String rasse){
         super(name, alter);
-        preis = rasse.getPreis();
+        preis = 0;
         this.rasse = rasse;
     }
 
-    public Katze(String name, int alter, double preis, Katzenrasse rasse) {
+    public Katze(String name, int alter, double preis, String rasse){
         super(name, alter, preis);
         this.rasse = rasse;
     }
+
 
     @Override
     public void macheGeräusche() {
         System.out.println("miau");
     }
+
 }

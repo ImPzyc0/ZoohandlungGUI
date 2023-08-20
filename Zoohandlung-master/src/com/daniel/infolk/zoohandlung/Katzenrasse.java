@@ -15,7 +15,7 @@ public enum Katzenrasse {
 
     private double preis;
 
-    private Katzenrasse(double preis){
+    private Katzenrasse(double preis) {
 
         this.preis = preis;
 

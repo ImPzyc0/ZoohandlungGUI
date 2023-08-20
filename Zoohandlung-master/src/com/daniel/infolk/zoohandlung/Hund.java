@@ -14,7 +14,7 @@ public class Hund extends Tier {
 
     private final Hunderasse rasse;
 
-    public Hund(String name, int alter, Hunderasse rasse, Befehle... befehle){
+    public Hund(String name, int alter, Hunderasse rasse, Befehle... befehle) {
         super(name, alter);
         preis = rasse.getPreis();
         this.rasse = rasse;
@@ -22,16 +22,16 @@ public class Hund extends Tier {
         this.befehle = new ArrayList<>(Arrays.asList(befehle));
     }
 
-    public Hund(String name, int alter, double preis, Hunderasse rasse, Befehle... befehle){
+    public Hund(String name, int alter, double preis, Hunderasse rasse, Befehle... befehle) {
         super(name, alter, preis);
         this.rasse = rasse;
 
         this.befehle = new ArrayList<>(Arrays.asList(befehle));
     }
 
-    public void befehl(String befehl){
+    public void befehl(String befehl) {
 
-        if(befehle.contains(Befehle.valueOf(befehl))){
+        if (befehle.contains(Befehle.valueOf(befehl))) {
             Befehle.valueOf(befehl).fuereBefehlAus();
         }
 
