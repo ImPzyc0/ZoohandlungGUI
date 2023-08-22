@@ -7,21 +7,6 @@ public class Zoohandlung {
 
     private final String ladenId;
 
-    public void update(){
-
-        for(int i = 0; i<pfleger.length; i++){
-            try{
-                pfleger[i].versorgTier(tiere[i]);
-                tiere[i].macheGeräusche();
-            }
-            catch(ArrayIndexOutOfBoundsException x){
-                System.out.println("Anzahl an Pflegern != Anzahl and Tieren");
-            }
-
-        }
-
-    }
-
     public Zoohandlung(String ladenId){
         this.ladenId = ladenId;
     }

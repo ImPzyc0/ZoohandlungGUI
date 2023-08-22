@@ -24,40 +24,40 @@
                      <Font size="20.0" />
                   </font>
                </Button>
-             <Button mnemonicParsing="false" prefHeight="43.0" prefWidth="402.0" style="-fx-background-color: white;" text="Neues Tier" textAlignment="CENTER">
+             <Button fx:id="neuesTierButton" mnemonicParsing="false" onAction="#onNeuesTierButtonclick" prefHeight="43.0" prefWidth="402.0" style="-fx-background-color: white;" text="Neues Tier" textAlignment="CENTER">
                   <font>
                      <Font size="20.0" />
                   </font>
                </Button>
-               <Button mnemonicParsing="false" prefHeight="93.0" style="-fx-background-color: white;" text="Sortieren nach: Preis">
+               <Button fx:id="sortierenNachButton" mnemonicParsing="false" onAction="#onSortierenNachButtonClick" prefHeight="93.0" style="-fx-background-color: white;" text="Sortieren nach: Preis">
                   <font>
                      <Font size="11.0" />
                   </font>
                </Button>
-               <TextField prefHeight="64.0" promptText="Suche nach..." />
+               <TextField fx:id="suchenNach" onAction="#onSuchenNachEnter" prefHeight="64.0" promptText="Suche nach..." />
            </buttons>
          </ButtonBar>
-         <Label id="RasseHund" contentDisplay="CENTER" prefHeight="43.0" prefWidth="538.0" text="Rasse:" textAlignment="CENTER">
+         <Label id="RasseHund" fx:id="rasse" contentDisplay="CENTER" prefHeight="43.0" prefWidth="538.0" text="Rasse:" textAlignment="CENTER">
             <font>
                <Font size="25.0" />
             </font>
          </Label>
-         <Label prefHeight="43.0" prefWidth="538.0" text="Name:">
+         <Label fx:id="name" prefHeight="43.0" prefWidth="538.0" text="Name:">
             <font>
                <Font size="25.0" />
             </font>
          </Label>
-         <Label id="RasseHund" contentDisplay="CENTER" prefHeight="43.0" prefWidth="538.0" text="Alter:" textAlignment="CENTER">
+         <Label id="RasseHund" fx:id="alter" contentDisplay="CENTER" prefHeight="43.0" prefWidth="538.0" text="Alter:" textAlignment="CENTER">
             <font>
                <Font size="25.0" />
             </font>
          </Label>
-         <Label id="RasseHund" contentDisplay="CENTER" prefHeight="43.0" prefWidth="538.0" text="Preis:" textAlignment="CENTER">
+         <Label id="RasseHund" fx:id="preis" contentDisplay="CENTER" prefHeight="43.0" prefWidth="538.0" text="Preis:" textAlignment="CENTER">
             <font>
                <Font size="25.0" />
             </font>
          </Label>
-         <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="560.0" style="-fx-background-color: #79797a;" text="Actions">
+         <Button fx:id="aktionenButton" mnemonicParsing="false" onAction="#onAktionenButtonClick" prefHeight="26.0" prefWidth="560.0" style="-fx-background-color: #79797a;" text="Aktionen">
             <font>
                <Font size="25.0" />
             </font>
@@ -66,10 +66,10 @@
    </VBox>
    <AnchorPane prefHeight="200.0" prefWidth="200.0">
       <children>
-         <Label layoutX="25.0" layoutY="-4.0" prefHeight="36.0" prefWidth="518.0" text="Mimi" />
-         <ScrollBar layoutX="7.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="82.0" prefWidth="14.0" style="-fx-background-color: grey;" />
-         <Label layoutX="25.0" layoutY="23.0" prefHeight="36.0" prefWidth="518.0" text="Mimi" />
-         <Label layoutX="25.0" layoutY="54.0" prefHeight="36.0" prefWidth="518.0" text="Mimi" />
+         <Label fx:id="tierLabel1" layoutX="25.0" layoutY="-4.0" prefHeight="36.0" prefWidth="518.0" text="Mimi" />
+         <ScrollBar fx:id="tierScrollBar" layoutX="7.0" layoutY="-1.0" onScroll="#onTierScrollBarUpdate" orientation="VERTICAL" prefHeight="82.0" prefWidth="14.0" style="-fx-background-color: grey;" />
+         <Label fx:id="tierLabel2" layoutX="25.0" layoutY="23.0" prefHeight="36.0" prefWidth="518.0" text="Mimi" />
+         <Label fx:id="tierLabel3" layoutX="25.0" layoutY="54.0" prefHeight="36.0" prefWidth="518.0" text="Mimi" />
       </children>
    </AnchorPane>
 </VBox>
