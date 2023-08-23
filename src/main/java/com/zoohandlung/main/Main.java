@@ -6,12 +6,36 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Tab;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 public class Main extends Application {
 
     //Variablen fürs lesen der JSON-Dateien:
+
+
+   //Main instanz
+   private static Main main;
+
+   //Instanz vom Controller
+    private EventController controller;
+
+    //Instanz vom Manager
+    private ZoohandlungsManager manager;
+
+   public static Main getMainInstanz(){
+       return main;
+   }
+
+   public Main(){
+       Main.main = this;
+
+       this.manager = new ZoohandlungsManager();
+       manager.ladDateien();
+   }
+
+   public void setControllerInstanz(EventController controller){
+       this.controller = controller;
+   }
 
     @Override
     public void start(Stage stage) throws IOException {

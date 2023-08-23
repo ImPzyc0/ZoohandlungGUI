@@ -18,6 +18,11 @@ public class EventController {
     private ScrollBar tierScrollBar;
 
 
+    public EventController(){
+        Main.getMainInstanz().setControllerInstanz(this);
+    }
+
+
     @FXML
     protected void onOeffnenButtonClick() {
         oeffnenButton.setText(oeffnenButton.getText().equals("Öffnen") ? "Schließen":"Öffnen");
@@ -41,6 +46,8 @@ public class EventController {
     @FXML
     protected void onTierScrollBarUpdate(){
         //Labels neu text setzen
+
+
     }
 
     @FXML
