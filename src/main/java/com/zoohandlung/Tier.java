@@ -27,5 +27,7 @@ public abstract class Tier {
         return name;
     }
 
+    public int getAlter(){return alter;}
+
 
 }
