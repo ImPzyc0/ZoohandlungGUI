@@ -105,7 +105,7 @@ public class Zoohandlung {
         pivots[0] = sortierteTiere[sortierteTiere.length/2];
         //Einfach nach dem Pivot sortieren
 
-        for(int i = 1; i<sortierteTiere.length/2; i++){
+        for(int i = 1; i<sortierteTiere.length/2+1; i++){
             //Für alle Pivots die gerade angegeben sind sortieren
             for(int y = 0; y<i; y++){
                 sortiereNachPivot(sortierteTiere, pivots[y]);
@@ -132,7 +132,7 @@ public class Zoohandlung {
                     }
                 }
                 //Abstand zum letzten Pivot /2 teilen
-                neuePivotPosAbstandZumLetzten[y] = (neuePivotPos[y]-letzter)/2;
+                neuePivotPosAbstandZumLetzten[y] = (neuePivotPos[y]-letzter)/2+1;
             }
 
             //Neue pivot pos setzen
@@ -162,12 +162,10 @@ public class Zoohandlung {
 
     private Tier[] sortiereNachPivot(Tier[] sortierteTiere, Tier pivot){
         //Bestimmen welche Tiere Älter bzw. Jünger sind
-        System.out.println("Pivot: "+pivot.getName());
         Tier[] tiereAlterNiedriger = new Tier[sortierteTiere.length-1];
         Tier[] tiereAlterHoeher = new Tier[sortierteTiere.length];
         int zaehler = 0;
         int zaehler2 = 0;
-
         for(Tier tier : sortierteTiere){
             if(tier.getAlter() < pivot.getAlter()){
                 tiereAlterNiedriger[zaehler] = tier;
@@ -186,9 +184,16 @@ public class Zoohandlung {
             sortierteTiere[i] = tiereAlterNiedrigerGek[i];
         }
 
-        for(int i = tiereAlterNiedrigerGek.length; i<sortierteTiere.length; i++){
-            sortierteTiere[i] = tiereAlterHoeherGek[i-tiereAlterNiedrigerGek.length];
+        sortierteTiere[tiereAlterNiedrigerGek.length] = pivot;
+
+        int y = tiereAlterNiedrigerGek.length+1;
+        for (Tier tier : tiereAlterHoeherGek) {
+            if (tier != pivot) {
+                sortierteTiere[y] = tier;
+                y++;
+            }
         }
         return sortierteTiere;
+
     }
 }

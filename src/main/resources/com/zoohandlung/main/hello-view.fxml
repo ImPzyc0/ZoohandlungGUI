@@ -66,10 +66,13 @@
    </VBox>
    <AnchorPane prefHeight="200.0" prefWidth="200.0">
       <children>
-         <Label fx:id="tierLabel1" layoutX="25.0" layoutY="-4.0" prefHeight="36.0" prefWidth="518.0" text="Mimi" />
-         <ScrollBar fx:id="tierScrollBar" layoutX="7.0" layoutY="-1.0" onScroll="#onTierScrollBarUpdate" orientation="VERTICAL" prefHeight="82.0" prefWidth="14.0" style="-fx-background-color: grey;" />
-         <Label fx:id="tierLabel2" layoutX="25.0" layoutY="23.0" prefHeight="36.0" prefWidth="518.0" text="Mimi" />
-         <Label fx:id="tierLabel3" layoutX="25.0" layoutY="54.0" prefHeight="36.0" prefWidth="518.0" text="Mimi" />
+         <ScrollBar fx:id="tierScrollBar" layoutX="2.0" layoutY="-1.0" onDragDetected="#onTierScrollBarUpdate" orientation="VERTICAL" prefHeight="90.0" prefWidth="19.0" style="-fx-background-color: grey;" />
+         <Label fx:id="tierLabel1" layoutX="25.0" layoutY="-4.0" prefHeight="36.0" prefWidth="219.0" text="Mimi" />
+         <Label fx:id="tierLabel2" layoutX="25.0" layoutY="27.0" prefHeight="36.0" prefWidth="219.0" text="Mimi" />
+         <Label fx:id="tierLabel3" layoutX="25.0" layoutY="54.0" prefHeight="36.0" prefWidth="219.0" text="Mimi" />
+         <Label fx:id="tierLabel4" layoutX="268.0" layoutY="-4.0" prefHeight="36.0" prefWidth="219.0" text="Mimi" />
+         <Label fx:id="tierLabel5" layoutX="268.0" layoutY="27.0" prefHeight="36.0" prefWidth="219.0" text="Mimi" />
+         <Label fx:id="tierLabel6" layoutX="268.0" layoutY="54.0" prefHeight="36.0" prefWidth="219.0" text="Mimi" />
       </children>
    </AnchorPane>
 </VBox>
