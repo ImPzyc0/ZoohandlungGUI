@@ -92,108 +92,76 @@ public class Zoohandlung {
 
     //benutzt quicksort, selbst umgesetzt
     //Im Grunde haben wir eine Liste. Wir suchen uns irgendeine Zahl daraus aus. Jetzt schmeißen wir alles was kleiner ist nach links und alles was größer ist nach rechts.
-    //Das ganze wiederholen wir in immer kleineren Listen, und irgendwann ist dann die Liste soriert ;)
+    //Das ganze wiederholen wir in immer kleineren Listen, und irgendwann ist dann die Liste sortiert ;) - Erklärung aus dem Internetz
     //https://www.youtube.com/watch?v=eNUM23f6g-s
-    public Tier[] getTiereNachAlter(){
-
-        //Klonen und direkt returnen falls es nicht sortiert werden muss
-        Tier[] sortierteTiere = tiere.clone();
-        if(tiere.length < 2){return sortierteTiere;}
-
-        //Den 1. Pivot (wo es geteilt wird) bestimmen
-        Tier[] pivots = new Tier[sortierteTiere.length];
-        pivots[0] = sortierteTiere[sortierteTiere.length/2];
-        //Einfach nach dem Pivot sortieren
-
-        for(int i = 1; i<sortierteTiere.length/2+1; i++){
-            //Für alle Pivots die gerade angegeben sind sortieren
-            for(int y = 0; y<i; y++){
-                sortiereNachPivot(sortierteTiere, pivots[y]);
-            }
-            //Ale neuen Pivot position herausfinden
-            int[] neuePivotPos = new int[i+1];
-            for(int z = 0; z<i-1; z++){
-                for(int y = 0; y<sortierteTiere.length;y++){
-                    if(pivots[z] == sortierteTiere[y]){
-                        neuePivotPos[z] = y;
-                    }
-                }
-            }
-            neuePivotPos[i] = sortierteTiere.length;
-            //Nähst niedrigsten Pivot herausfinden
-            int[] neuePivotPosAbstandZumLetzten = new int[neuePivotPos.length];
-            for(int y = 0; y<neuePivotPos.length;y++){
-                //Letzte Position die gefunden wurde
-                int letzter = 0;
-                //Mit positionen vergleichen
-                for(int z = 0; z<neuePivotPos.length; z++){
-                    if(neuePivotPos[y] > neuePivotPos[z] && neuePivotPos[z] > letzter){
-                        letzter = z;
-                    }
-                }
-                //Abstand zum letzten Pivot /2 teilen
-                neuePivotPosAbstandZumLetzten[y] = (neuePivotPos[y]-letzter)/2+1;
-            }
-
-            //Neue pivot pos setzen
-            Tier[] neuePivotPotsTiere = new Tier[neuePivotPosAbstandZumLetzten.length];
-            for(int y = 0; y<neuePivotPosAbstandZumLetzten.length; y++){
-                neuePivotPotsTiere[y] = sortierteTiere[neuePivotPosAbstandZumLetzten[y]];
-            }
-             pivots = Arrays.copyOf(neuePivotPotsTiere, pivots.length);
-            //Falls es schon sortiert ist zurückgeben
-            if(istSortiert(sortierteTiere)){
-                return sortierteTiere;
-            }
-        }
-
-        return sortierteTiere;
+    public Tier[] getTiereNachAlter() {
+        return sortiereNachPivot(tiere.clone(), tiere.length/2);
     }
 
-    private boolean istSortiert(Tier[] sortierteTiere){
-        for(int i = 0; i<sortierteTiere.length-1;i++){
-            if(sortierteTiere[i].getAlter() > sortierteTiere[i+1].getAlter()){
+    private Tier[] sortiereNachPivot(Tier[] list, int pivot){
+        //Returnen falls unnötig
+        if(list.length <2){return list;}
+        //Liste Klonen, Pivot Tier herausfinden
+        Tier pivotTier = list[pivot];
+
+        //In Arrays packen welche Niedriger und welche höher als der Pivot sind
+        Tier[] niedriegerAlsPivot = new Tier[list.length-1];
+        int y = 0;
+        Tier[] hoeherAlsPivot = new Tier[list.length];
+        int i = 0;
+        for(Tier tier : list){
+            if(tier == pivotTier) {continue;}
+            if(tier.getAlter() < pivotTier.getAlter()){
+                niedriegerAlsPivot[y] = tier;
+                y++;
+            }else{
+                hoeherAlsPivot[i] = tier;
+                i++;
+            }
+        }
+        //Listen kürzen und zusammentun
+        niedriegerAlsPivot = Arrays.copyOf(niedriegerAlsPivot, y);
+        hoeherAlsPivot = Arrays.copyOf(hoeherAlsPivot, i);
+
+        list = Arrays.copyOf(niedriegerAlsPivot, list.length);
+        list[niedriegerAlsPivot.length] = pivotTier;
+
+        for(int n = 0; n<hoeherAlsPivot.length; n++){
+            list[n+niedriegerAlsPivot.length+1] = hoeherAlsPivot[n];
+        }
+        //Falls sortiert returnen
+        if(istSortiertNachAlter(list)){
+            return list;
+        }
+        //Falls nicht, Rekursiv aufrufen und die höhere und niedrigere Liste sortieren
+        niedriegerAlsPivot = Arrays.copyOf(niedriegerAlsPivot, niedriegerAlsPivot.length+1);
+        niedriegerAlsPivot[niedriegerAlsPivot.length-1] = pivotTier;
+        list = Arrays.copyOf(sortiereNachPivot(niedriegerAlsPivot, niedriegerAlsPivot.length/2), list.length);
+
+        hoeherAlsPivot = sortiereNachPivot(hoeherAlsPivot,hoeherAlsPivot.length/2);
+        for(int n = 0; n<hoeherAlsPivot.length; n++){
+            list[n+niedriegerAlsPivot.length] = hoeherAlsPivot[n];
+        }
+        //Ende
+        return list;
+    }
+
+    private boolean istSortiert(int[] list){
+        for(int i = 0; i<list.length-1; i++){
+            if(list[i] > list[i+1]){
                 return false;
             }
         }
-
         return true;
     }
 
-    private Tier[] sortiereNachPivot(Tier[] sortierteTiere, Tier pivot){
-        //Bestimmen welche Tiere Älter bzw. Jünger sind
-        Tier[] tiereAlterNiedriger = new Tier[sortierteTiere.length-1];
-        Tier[] tiereAlterHoeher = new Tier[sortierteTiere.length];
-        int zaehler = 0;
-        int zaehler2 = 0;
-        for(Tier tier : sortierteTiere){
-            if(tier.getAlter() < pivot.getAlter()){
-                tiereAlterNiedriger[zaehler] = tier;
-                zaehler++;
-            }else{
-                tiereAlterHoeher[zaehler2] = tier;
-                zaehler2++;
-            }
+    private boolean istSortiertNachAlter(Tier[] list) {
+        //In int-Array umwandeln und dann überprüfen, kann dann auch später benutzt werden
+        if(list.length < 2){return true;}
+        int[] list2 = new int[list.length];
+        for (int i = 0; i < list.length; i++) {
+            list2[i] = list[i].getAlter();
         }
-
-        Tier[] tiereAlterNiedrigerGek = Arrays.copyOf(tiereAlterNiedriger, zaehler);
-        Tier[] tiereAlterHoeherGek = Arrays.copyOf(tiereAlterHoeher, zaehler2);
-
-        //Die 2 Listen zusammenbringen
-        for(int i = 0; i<tiereAlterNiedrigerGek.length;i++){
-            sortierteTiere[i] = tiereAlterNiedrigerGek[i];
-        }
-
-        sortierteTiere[tiereAlterNiedrigerGek.length] = pivot;
-
-        int y = tiereAlterNiedrigerGek.length+1;
-        for (Tier tier : tiereAlterHoeherGek) {
-            if (tier != pivot) {
-                sortierteTiere[y] = tier;
-                y++;
-            }
-        }
-        return sortierteTiere;
-
+        return istSortiert(list2);
     }
 }
