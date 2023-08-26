@@ -29,7 +29,7 @@
                      <Font size="20.0" />
                   </font>
                </Button>
-               <Button fx:id="sortierenNachButton" mnemonicParsing="false" onAction="#onSortierenNachButtonClick" prefHeight="93.0" style="-fx-background-color: white;" text="Sortieren nach: Preis">
+               <Button fx:id="sortierenNachButton" mnemonicParsing="false" onAction="#onSortierenNachButtonClick" prefHeight="93.0" style="-fx-background-color: white;" text="Jung - Alt">
                   <font>
                      <Font size="11.0" />
                   </font>
@@ -67,12 +67,12 @@
    <AnchorPane prefHeight="200.0" prefWidth="200.0">
       <children>
          <ScrollBar fx:id="tierScrollBar" layoutX="5.0" orientation="VERTICAL" prefHeight="84.0" prefWidth="19.0" style="-fx-background-color: grey;" />
-         <Label fx:id="tierLabel1" layoutX="25.0" layoutY="-4.0" prefHeight="36.0" prefWidth="219.0" text="Mimi" />
-         <Label fx:id="tierLabel2" layoutX="25.0" layoutY="27.0" prefHeight="36.0" prefWidth="219.0" text="Mimi" />
-         <Label fx:id="tierLabel3" layoutX="25.0" layoutY="54.0" prefHeight="36.0" prefWidth="219.0" text="Mimi" />
-         <Label fx:id="tierLabel4" layoutX="268.0" layoutY="-4.0" prefHeight="36.0" prefWidth="219.0" text="Mimi" />
-         <Label fx:id="tierLabel5" layoutX="268.0" layoutY="27.0" prefHeight="36.0" prefWidth="219.0" text="Mimi" />
-         <Label fx:id="tierLabel6" layoutX="268.0" layoutY="54.0" prefHeight="36.0" prefWidth="219.0" text="Mimi" />
+         <Label fx:id="tierLabel1" layoutX="25.0" layoutY="-4.0" onMousePressed="#onClickLabel1" prefHeight="36.0" prefWidth="219.0" text="Mimi" />
+         <Label fx:id="tierLabel2" layoutX="25.0" layoutY="27.0" onMousePressed="#onClickLabel2" prefHeight="36.0" prefWidth="219.0" text="Mimi" />
+         <Label fx:id="tierLabel3" layoutX="25.0" layoutY="54.0" onMousePressed="#onClickLabel3" prefHeight="36.0" prefWidth="219.0" text="Mimi" />
+         <Label fx:id="tierLabel4" layoutX="268.0" layoutY="-4.0" onMousePressed="#onClickLabel4" prefHeight="36.0" prefWidth="219.0" text="Mimi" />
+         <Label fx:id="tierLabel5" layoutX="268.0" layoutY="27.0" onMousePressed="#onClickLabel5" prefHeight="36.0" prefWidth="219.0" text="Mimi" />
+         <Label fx:id="tierLabel6" layoutX="268.0" layoutY="54.0" onMousePressed="#onClickLabel6" prefHeight="36.0" prefWidth="219.0" text="Mimi" />
       </children>
    </AnchorPane>
 </VBox>

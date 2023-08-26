@@ -15,14 +15,14 @@ public class ZoohandlungsManager {
 
         zoohandlung = new Zoohandlung("lll");
 
-        zoohandlung.neuesTier(new Katze("Mimi 1",20,20.32, "Orange"));
-        zoohandlung.neuesTier(new Katze("Mimi 2",20, 20,"Orange"));
-        zoohandlung.neuesTier(new Katze("Mimi 3",20,20, "Orange"));
-        zoohandlung.neuesTier(new Katze("Mimi 4",20, 20,"Orange"));
-        zoohandlung.neuesTier(new Katze("Mimi 5",20,20, "Orange"));
-        zoohandlung.neuesTier(new Katze("Mimi 6",20,20, "Orange"));
-        zoohandlung.neuesTier(new Katze("Mimi 7",20,20, "Orange"));
-        zoohandlung.neuesTier(new Katze("Mimi 8",20,20, "Orange"));
+        zoohandlung.neuesTier(new Katze("Mimi 1",20,20, "Orange"));
+        zoohandlung.neuesTier(new Katze("Mimi 2",202, 201,"Orange"));
+        zoohandlung.neuesTier(new Katze("Mimi 3",203,202, "Orange"));
+        zoohandlung.neuesTier(new Katze("Mimi 4",204, 203,"Orange"));
+        zoohandlung.neuesTier(new Katze("Mimi 5",205,204, "Orange"));
+        zoohandlung.neuesTier(new Katze("Mimi 6",206,205, "Orange"));
+        zoohandlung.neuesTier(new Katze("Mimi 7",207,206, "Orange"));
+        zoohandlung.neuesTier(new Katze("Mimi 8",208,207, "Orange"));
 
         zoohandlung.neuerPfleger("Michael");
 

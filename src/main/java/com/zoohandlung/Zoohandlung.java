@@ -1,6 +1,7 @@
 package com.zoohandlung;
 
 import java.util.Arrays;
+import java.util.Locale;
 
 public class Zoohandlung {
 
@@ -89,15 +90,45 @@ public class Zoohandlung {
 
     }
 
+    public Tier[] getTiereNachName(String name){
+        Tier[] tiereMitName = new Tier[tiere.length];
+        Tier[] tiereMitNamenEnthalten = new Tier[tiere.length];
+
+        int i = 0;
+        int y = 0;
+
+        for(Tier tier : tiere){
+            if(tier.getName().equalsIgnoreCase(name)){
+                tiereMitName[i] = tier;
+                i++;
+            }else if(tier.getName().toLowerCase().contains(name.toLowerCase()) || name.toLowerCase().contains(tier.getName().toLowerCase())){
+                tiereMitNamenEnthalten[y] = tier;
+                y++;
+            }
+        }
+
+        tiereMitName = Arrays.copyOf(tiereMitName, i+y);
+        tiereMitNamenEnthalten = Arrays.copyOf(tiereMitNamenEnthalten, y);
+
+        for(int n = 0; n<tiereMitNamenEnthalten.length; n++){
+            tiereMitName[n+i] = tiereMitNamenEnthalten[n];
+        }
+
+        return tiereMitName;
+    }
+
     //benutzt quicksort, selbst umgesetzt
     //Im Grunde haben wir eine Liste. Wir suchen uns irgendeine Zahl daraus aus. Jetzt schmeißen wir alles was kleiner ist nach links und alles was größer ist nach rechts.
     //Das ganze wiederholen wir in immer kleineren Listen, und irgendwann ist dann die Liste sortiert ;) - Erklärung aus dem Internetz
     //https://www.youtube.com/watch?v=eNUM23f6g-s
     public Tier[] getTiereNachAlter() {
-        return sortiereNachAlter(tiere.clone(), tiere.length/2);
+        return sortiereNach(tiere.clone(), tiere.length/2, 1);
     }
+    public Tier[] getTiereNachPreis() {return sortiereNach(tiere.clone(), tiere.length/2, 2);}
 
-    private Tier[] sortiereNachAlter(Tier[] list, int pivot){
+    //1 - Alter
+    //2 - Preis
+    private Tier[] sortiereNach(Tier[] list, int pivot, int nach){
         //Returnen falls unnötig
         if(list.length <2){return list;}
         //Liste Klonen, Pivot Tier herausfinden
@@ -110,7 +141,7 @@ public class Zoohandlung {
         int i = 0;
         for(Tier tier : list){
             if(tier == pivotTier) {continue;}
-            if(tier.getAlter() < pivotTier.getAlter()){
+            if((nach == 1 && tier.getAlter() < pivotTier.getAlter()) || (nach == 2 && tier.getPreis() < pivotTier.getPreis())){
                 niedriegerAlsPivot[y] = tier;
                 y++;
             }else{
@@ -135,9 +166,9 @@ public class Zoohandlung {
         //Falls nicht, Rekursiv aufrufen und die höhere und niedrigere Liste sortieren
         niedriegerAlsPivot = Arrays.copyOf(niedriegerAlsPivot, niedriegerAlsPivot.length+1);
         niedriegerAlsPivot[niedriegerAlsPivot.length-1] = pivotTier;
-        list = Arrays.copyOf(sortiereNachAlter(niedriegerAlsPivot, niedriegerAlsPivot.length/2), list.length);
+        list = Arrays.copyOf(sortiereNach(niedriegerAlsPivot, niedriegerAlsPivot.length/2, nach), list.length);
 
-        hoeherAlsPivot = sortiereNachAlter(hoeherAlsPivot,hoeherAlsPivot.length/2);
+        hoeherAlsPivot = sortiereNach(hoeherAlsPivot,hoeherAlsPivot.length/2, nach);
         for(int n = 0; n<hoeherAlsPivot.length; n++){
             list[n+niedriegerAlsPivot.length] = hoeherAlsPivot[n];
         }
