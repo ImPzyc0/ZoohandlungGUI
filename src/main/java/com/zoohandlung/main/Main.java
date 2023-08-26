@@ -4,6 +4,7 @@ import com.zoohandlung.Katze;
 import com.zoohandlung.Tier;
 import com.zoohandlung.Zoohandlung;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Tab;
@@ -50,7 +51,10 @@ public class Main extends Application {
         stage.setTitle("Zoohandlung");
         stage.setScene(scene);
         stage.setResizable(false);
+        stage.setOnCloseRequest(e -> System.exit(0));
         stage.show();
+
+        controller.setzeStartWerte();
     }
 
     public static void main(String[] args) {

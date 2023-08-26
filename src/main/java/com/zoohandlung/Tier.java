@@ -30,4 +30,9 @@ public abstract class Tier {
     public int getAlter(){return alter;}
 
 
+    public double getPreis() {
+        return preis;
+    }
+
+
 }

@@ -89,16 +89,15 @@ public class Zoohandlung {
 
     }
 
-
     //benutzt quicksort, selbst umgesetzt
     //Im Grunde haben wir eine Liste. Wir suchen uns irgendeine Zahl daraus aus. Jetzt schmeißen wir alles was kleiner ist nach links und alles was größer ist nach rechts.
     //Das ganze wiederholen wir in immer kleineren Listen, und irgendwann ist dann die Liste sortiert ;) - Erklärung aus dem Internetz
     //https://www.youtube.com/watch?v=eNUM23f6g-s
     public Tier[] getTiereNachAlter() {
-        return sortiereNachPivot(tiere.clone(), tiere.length/2);
+        return sortiereNachAlter(tiere.clone(), tiere.length/2);
     }
 
-    private Tier[] sortiereNachPivot(Tier[] list, int pivot){
+    private Tier[] sortiereNachAlter(Tier[] list, int pivot){
         //Returnen falls unnötig
         if(list.length <2){return list;}
         //Liste Klonen, Pivot Tier herausfinden
@@ -136,9 +135,9 @@ public class Zoohandlung {
         //Falls nicht, Rekursiv aufrufen und die höhere und niedrigere Liste sortieren
         niedriegerAlsPivot = Arrays.copyOf(niedriegerAlsPivot, niedriegerAlsPivot.length+1);
         niedriegerAlsPivot[niedriegerAlsPivot.length-1] = pivotTier;
-        list = Arrays.copyOf(sortiereNachPivot(niedriegerAlsPivot, niedriegerAlsPivot.length/2), list.length);
+        list = Arrays.copyOf(sortiereNachAlter(niedriegerAlsPivot, niedriegerAlsPivot.length/2), list.length);
 
-        hoeherAlsPivot = sortiereNachPivot(hoeherAlsPivot,hoeherAlsPivot.length/2);
+        hoeherAlsPivot = sortiereNachAlter(hoeherAlsPivot,hoeherAlsPivot.length/2);
         for(int n = 0; n<hoeherAlsPivot.length; n++){
             list[n+niedriegerAlsPivot.length] = hoeherAlsPivot[n];
         }
