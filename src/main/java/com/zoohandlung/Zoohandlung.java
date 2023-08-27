@@ -188,10 +188,12 @@ public class Zoohandlung {
     private boolean istSortiertNachAlter(Tier[] list, int sortiereNach) {
         //In int-Array umwandeln und dann überprüfen, kann dann auch später benutzt werden
         if(list.length < 2){return true;}
+
         double[] list2 = new double[list.length];
         for (int i = 0; i < list.length; i++) {
             list2[i] = sortiereNach == 1 ? list[i].getAlter() : list[i].getPreis();
         }
         return istSortiert(list2);
     }
+
 }

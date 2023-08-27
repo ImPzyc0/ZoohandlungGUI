@@ -107,6 +107,7 @@ public class EventController {
 
         if(alternativeTiere != null){
             onTierScrollBarUpdate(alternativeTiere);
+            return;
         }
 
         //Labels neu text setzen
@@ -130,7 +131,7 @@ public class EventController {
             default:
                 return;
         }
-
+        alternativeTiere = tiere;
         tierScrollBar.setMax(tiere.length-6);
 
         tierLabel1.setText(tiere.length > 0 ? tiere[(int) tierScrollBar.getValue()].getName()+ " - "+ tiere[(int) tierScrollBar.getValue()].getClass().getSimpleName(): "-");
@@ -143,7 +144,6 @@ public class EventController {
 
     protected void onTierScrollBarUpdate(Tier[] tiere){
         //Labels neu text setzen
-        alternativeTiere = tiere;
         tierLabel1.setText(tiere.length > 0 ? tiere[(int) tierScrollBar.getValue()].getName()+ " - "+ tiere[(int) tierScrollBar.getValue()].getClass().getSimpleName(): "-");
         tierLabel2.setText(tiere.length > 1 ? tiere[(int) tierScrollBar.getValue()+1].getName()+ " - "+ tiere[(int) tierScrollBar.getValue()+1].getClass().getSimpleName() : "-");
         tierLabel3.setText(tiere.length > 2 ? tiere[(int) tierScrollBar.getValue()+2].getName()+ " - "+ tiere[(int) tierScrollBar.getValue()+2].getClass().getSimpleName() : "-");
@@ -178,29 +178,28 @@ public class EventController {
 
     @FXML
     protected void onClickLabel1(){
-        setzeAngezeigtesTier(zoohandlung.getTiere()[letzterScrollbarWert]);
+        setzeAngezeigtesTier(alternativeTiere == null ? zoohandlung.getTiere()[letzterScrollbarWert] : alternativeTiere[letzterScrollbarWert]);
     }
     @FXML
     protected void onClickLabel2(){
-        setzeAngezeigtesTier(zoohandlung.getTiere()[letzterScrollbarWert+1]);
+        setzeAngezeigtesTier(alternativeTiere == null ? zoohandlung.getTiere()[letzterScrollbarWert+1] : alternativeTiere[letzterScrollbarWert+1]);
     }
     @FXML
     protected void onClickLabel3(){
-        setzeAngezeigtesTier(zoohandlung.getTiere()[letzterScrollbarWert+2]);
+        setzeAngezeigtesTier(alternativeTiere == null ? zoohandlung.getTiere()[letzterScrollbarWert+2] : alternativeTiere[letzterScrollbarWert+2]);
     }
     @FXML
     protected void onClickLabel4(){
-        setzeAngezeigtesTier(zoohandlung.getTiere()[letzterScrollbarWert+3]);
+        setzeAngezeigtesTier(alternativeTiere == null ? zoohandlung.getTiere()[letzterScrollbarWert+3] : alternativeTiere[letzterScrollbarWert+3]);
     }
     @FXML
     protected void onClickLabel5(){
-        setzeAngezeigtesTier(zoohandlung.getTiere()[letzterScrollbarWert+4]);
+        setzeAngezeigtesTier(alternativeTiere == null ? zoohandlung.getTiere()[letzterScrollbarWert+4] : alternativeTiere[letzterScrollbarWert+4]);
     }
     @FXML
     protected void onClickLabel6(){
-        setzeAngezeigtesTier(zoohandlung.getTiere()[letzterScrollbarWert+5]);
+        setzeAngezeigtesTier(alternativeTiere == null ? zoohandlung.getTiere()[letzterScrollbarWert+5] : alternativeTiere[letzterScrollbarWert+5]);
     }
-
 
     private void setzeAngezeigtesTier(Tier tier){
         switch (tier.getClass().getSimpleName()) {
