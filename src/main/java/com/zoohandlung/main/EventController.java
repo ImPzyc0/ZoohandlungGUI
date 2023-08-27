@@ -99,7 +99,7 @@ public class EventController {
     @FXML
     protected void onSuchenNachEnter(){
         //Von Oben nach unten nach den Ergebnissen sortieren
-        onTierScrollBarUpdate(zoohandlung.getTiereNachName(suchenNach.getText()));
+        updateTierScrollBarSuche(zoohandlung.getTiereNachName(suchenNach.getText()));
 
     }
 
@@ -130,6 +130,9 @@ public class EventController {
             default:
                 return;
         }
+
+        tierScrollBar.setMax(tiere.length-6);
+
         tierLabel1.setText(tiere.length > 0 ? tiere[(int) tierScrollBar.getValue()].getName()+ " - "+ tiere[(int) tierScrollBar.getValue()].getClass().getSimpleName(): "-");
         tierLabel2.setText(tiere.length > 1 ? tiere[(int) tierScrollBar.getValue()+1].getName()+ " - "+ tiere[(int) tierScrollBar.getValue()+1].getClass().getSimpleName() : "-");
         tierLabel3.setText(tiere.length > 2 ? tiere[(int) tierScrollBar.getValue()+2].getName()+ " - "+ tiere[(int) tierScrollBar.getValue()+2].getClass().getSimpleName() : "-");
@@ -139,6 +142,17 @@ public class EventController {
     }
 
     protected void onTierScrollBarUpdate(Tier[] tiere){
+        //Labels neu text setzen
+        alternativeTiere = tiere;
+        tierLabel1.setText(tiere.length > 0 ? tiere[(int) tierScrollBar.getValue()].getName()+ " - "+ tiere[(int) tierScrollBar.getValue()].getClass().getSimpleName(): "-");
+        tierLabel2.setText(tiere.length > 1 ? tiere[(int) tierScrollBar.getValue()+1].getName()+ " - "+ tiere[(int) tierScrollBar.getValue()+1].getClass().getSimpleName() : "-");
+        tierLabel3.setText(tiere.length > 2 ? tiere[(int) tierScrollBar.getValue()+2].getName()+ " - "+ tiere[(int) tierScrollBar.getValue()+2].getClass().getSimpleName() : "-");
+        tierLabel4.setText(tiere.length > 3 ? tiere[(int) tierScrollBar.getValue()+3].getName()+ " - "+ tiere[(int) tierScrollBar.getValue()+3].getClass().getSimpleName() : "-");
+        tierLabel5.setText(tiere.length > 4 ? tiere[(int) tierScrollBar.getValue()+4].getName()+ " - "+ tiere[(int) tierScrollBar.getValue()+4].getClass().getSimpleName() : "-");
+        tierLabel6.setText(tiere.length > 5 ? tiere[(int) tierScrollBar.getValue()+5].getName()+ " - "+ tiere[(int) tierScrollBar.getValue()+5].getClass().getSimpleName() : "-");
+    }
+
+    protected void updateTierScrollBarSuche(Tier[] tiere){
         //Labels neu text setzen
         alternativeTiere = tiere;
         tierLabel1.setText(tiere.length > 0 ? tiere[(int) tierScrollBar.getValue()].getName()+ " - "+ tiere[(int) tierScrollBar.getValue()].getClass().getSimpleName(): "-");

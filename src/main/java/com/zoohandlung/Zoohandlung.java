@@ -128,7 +128,7 @@ public class Zoohandlung {
 
     //1 - Alter
     //2 - Preis
-    private Tier[] sortiereNach(Tier[] list, int pivot, int nach){
+    private Tier[] sortiereNach(Tier[] list, int pivot, int sortiereNach){
         //Returnen falls unnötig
         if(list.length <2){return list;}
         //Liste Klonen, Pivot Tier herausfinden
@@ -141,7 +141,7 @@ public class Zoohandlung {
         int i = 0;
         for(Tier tier : list){
             if(tier == pivotTier) {continue;}
-            if((nach == 1 && tier.getAlter() < pivotTier.getAlter()) || (nach == 2 && tier.getPreis() < pivotTier.getPreis())){
+            if((sortiereNach == 1 && tier.getAlter() < pivotTier.getAlter()) || (sortiereNach == 2 && tier.getPreis() < pivotTier.getPreis())){
                 niedriegerAlsPivot[y] = tier;
                 y++;
             }else{
@@ -160,15 +160,15 @@ public class Zoohandlung {
             list[n+niedriegerAlsPivot.length+1] = hoeherAlsPivot[n];
         }
         //Falls sortiert returnen
-        if(istSortiertNachAlter(list)){
+        if(istSortiertNachAlter(list,  sortiereNach)){
             return list;
         }
         //Falls nicht, Rekursiv aufrufen und die höhere und niedrigere Liste sortieren
         niedriegerAlsPivot = Arrays.copyOf(niedriegerAlsPivot, niedriegerAlsPivot.length+1);
         niedriegerAlsPivot[niedriegerAlsPivot.length-1] = pivotTier;
-        list = Arrays.copyOf(sortiereNach(niedriegerAlsPivot, niedriegerAlsPivot.length/2, nach), list.length);
+        list = Arrays.copyOf(sortiereNach(niedriegerAlsPivot, niedriegerAlsPivot.length/2, sortiereNach), list.length);
 
-        hoeherAlsPivot = sortiereNach(hoeherAlsPivot,hoeherAlsPivot.length/2, nach);
+        hoeherAlsPivot = sortiereNach(hoeherAlsPivot,hoeherAlsPivot.length/2, sortiereNach);
         for(int n = 0; n<hoeherAlsPivot.length; n++){
             list[n+niedriegerAlsPivot.length] = hoeherAlsPivot[n];
         }
@@ -176,7 +176,7 @@ public class Zoohandlung {
         return list;
     }
 
-    private boolean istSortiert(int[] list){
+    private boolean istSortiert(double[] list){
         for(int i = 0; i<list.length-1; i++){
             if(list[i] > list[i+1]){
                 return false;
@@ -185,12 +185,12 @@ public class Zoohandlung {
         return true;
     }
 
-    private boolean istSortiertNachAlter(Tier[] list) {
+    private boolean istSortiertNachAlter(Tier[] list, int sortiereNach) {
         //In int-Array umwandeln und dann überprüfen, kann dann auch später benutzt werden
         if(list.length < 2){return true;}
-        int[] list2 = new int[list.length];
+        double[] list2 = new double[list.length];
         for (int i = 0; i < list.length; i++) {
-            list2[i] = list[i].getAlter();
+            list2[i] = sortiereNach == 1 ? list[i].getAlter() : list[i].getPreis();
         }
         return istSortiert(list2);
     }
