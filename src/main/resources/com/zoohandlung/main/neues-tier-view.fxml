@@ -2,7 +2,9 @@
 
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -17,7 +19,112 @@
                </font>
             </Label>
             <ChoiceBox fx:id="tiere" accessibleRoleDescription="s" layoutX="125.0" layoutY="124.0" prefWidth="150.0" />
+            <Label layoutX="179.0" layoutY="80.0" prefHeight="35.0" prefWidth="43.0" text="Typ">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
+      <StackPane prefHeight="486.0" prefWidth="400.0">
+         <children>
+            <StackPane fx:id="hundPane" prefHeight="150.0" prefWidth="200.0" visible="false">
+               <children>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <TextField layoutX="98.0" layoutY="66.0" prefHeight="44.0" prefWidth="239.0" />
+                        <TextField layoutX="98.0" layoutY="14.0" prefHeight="44.0" prefWidth="239.0" />
+                        <TextField layoutX="98.0" layoutY="122.0" prefHeight="44.0" prefWidth="239.0" />
+                        <ChoiceBox layoutX="98.0" layoutY="173.0" prefHeight="25.0" prefWidth="239.0" />
+                        <Label layoutX="30.0" layoutY="66.0" prefHeight="44.0" prefWidth="68.0" text="Alter">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="30.0" layoutY="122.0" prefHeight="44.0" prefWidth="68.0" text="Preis">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="30.0" layoutY="14.0" prefHeight="44.0" prefWidth="68.0" text="Name">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="30.0" layoutY="176.0" prefHeight="44.0" prefWidth="68.0" text="Rasse">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </StackPane>
+            <StackPane fx:id="katzePane" layoutX="10.0" layoutY="10.0" prefHeight="150.0" prefWidth="200.0" visible="false">
+               <children>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <TextField layoutX="98.0" layoutY="66.0" prefHeight="44.0" prefWidth="239.0" />
+                        <TextField layoutX="98.0" layoutY="14.0" prefHeight="44.0" prefWidth="239.0" />
+                        <TextField layoutX="98.0" layoutY="122.0" prefHeight="44.0" prefWidth="239.0" />
+                        <ChoiceBox layoutX="98.0" layoutY="173.0" prefHeight="25.0" prefWidth="239.0" />
+                        <Label layoutX="30.0" layoutY="66.0" prefHeight="44.0" prefWidth="68.0" text="Alter">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="30.0" layoutY="122.0" prefHeight="44.0" prefWidth="68.0" text="Preis">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="30.0" layoutY="14.0" prefHeight="44.0" prefWidth="68.0" text="Name">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="30.0" layoutY="176.0" prefHeight="44.0" prefWidth="68.0" text="Rasse">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </StackPane>
+            <StackPane fx:id="pferdPane" layoutX="10.0" layoutY="10.0" prefHeight="150.0" prefWidth="200.0" visible="false">
+               <children>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <TextField layoutX="98.0" layoutY="66.0" prefHeight="44.0" prefWidth="239.0" />
+                        <TextField layoutX="98.0" layoutY="14.0" prefHeight="44.0" prefWidth="239.0" />
+                        <TextField layoutX="98.0" layoutY="122.0" prefHeight="44.0" prefWidth="239.0" />
+                        <ChoiceBox layoutX="98.0" layoutY="173.0" prefHeight="25.0" prefWidth="239.0" />
+                        <Label layoutX="30.0" layoutY="66.0" prefHeight="44.0" prefWidth="68.0" text="Alter">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="30.0" layoutY="122.0" prefHeight="44.0" prefWidth="68.0" text="Preis">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="30.0" layoutY="14.0" prefHeight="44.0" prefWidth="68.0" text="Name">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="30.0" layoutY="176.0" prefHeight="44.0" prefWidth="68.0" text="Rasse">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </StackPane>
+         </children>
+      </StackPane>
    </children>
 </VBox>
