@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -26,16 +28,16 @@
             </Label>
          </children>
       </AnchorPane>
-      <StackPane prefHeight="486.0" prefWidth="400.0">
+      <StackPane prefHeight="486.0" prefWidth="400.0" visible="false">
          <children>
-            <StackPane fx:id="hundPane" prefHeight="150.0" prefWidth="200.0" visible="false">
+            <StackPane fx:id="hundPane" prefHeight="150.0" prefWidth="200.0">
                <children>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
                         <TextField layoutX="98.0" layoutY="66.0" prefHeight="44.0" prefWidth="239.0" />
                         <TextField layoutX="98.0" layoutY="14.0" prefHeight="44.0" prefWidth="239.0" />
                         <TextField layoutX="98.0" layoutY="122.0" prefHeight="44.0" prefWidth="239.0" />
-                        <ChoiceBox layoutX="98.0" layoutY="173.0" prefHeight="25.0" prefWidth="239.0" />
+                        <ChoiceBox layoutX="98.0" layoutY="173.0" prefHeight="25.0" prefWidth="104.0" />
                         <Label layoutX="30.0" layoutY="66.0" prefHeight="44.0" prefWidth="68.0" text="Alter">
                            <font>
                               <Font size="22.0" />
@@ -56,6 +58,18 @@
                               <Font size="22.0" />
                            </font>
                         </Label>
+                        <Label layoutX="218.0" layoutY="176.0" prefHeight="44.0" prefWidth="68.0" text="Befehle" wrapText="true">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Label>
+                        <CheckBox layoutX="286.0" layoutY="177.0" mnemonicParsing="false" text="Platz" />
+                        <CheckBox layoutX="286.0" layoutY="198.0" mnemonicParsing="false" text="Lieg" />
+                        <Button layoutX="337.0" layoutY="14.0" mnemonicParsing="false" prefHeight="157.0" prefWidth="61.0" text="-&gt;">
+                           <font>
+                              <Font size="21.0" />
+                           </font>
+                        </Button>
                      </children>
                   </AnchorPane>
                </children>
@@ -88,6 +102,11 @@
                               <Font size="22.0" />
                            </font>
                         </Label>
+                        <Button mnemonicParsing="false" prefHeight="157.0" prefWidth="61.0" text="-&gt;">
+                           <font>
+                              <Font size="21.0" />
+                           </font>
+                        </Button>
                      </children>
                   </AnchorPane>
                </children>
@@ -120,6 +139,11 @@
                               <Font size="22.0" />
                            </font>
                         </Label>
+                        <Button mnemonicParsing="false" prefHeight="157.0" prefWidth="61.0" text="-&gt;">
+                           <font>
+                              <Font size="21.0" />
+                           </font>
+                        </Button>
                      </children>
                   </AnchorPane>
                </children>
