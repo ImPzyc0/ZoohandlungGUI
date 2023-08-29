@@ -90,7 +90,7 @@ public class EventController {
         //NeuesTier fenster öffnen, eigener Controller!
 
         Stage stage = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("neues-tier-viewfxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("neues-tier-view.fxml"));
         Scene scene = null;
         try {
             scene = new Scene(fxmlLoader.load());

@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.zoohandlung.NeuesTierController"
-            prefHeight="400.0" prefWidth="600.0">
 
-</AnchorPane>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zoohandlung.main.NeuesTierController">
+   <children>
+      <AnchorPane prefHeight="400.0" prefWidth="400.0">
+         <children>
+            <Label layoutX="116.0" layoutY="29.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="168.0" text="Neues Tier" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Arial" size="33.0" />
+               </font>
+            </Label>
+            <ChoiceBox fx:id="tiere" accessibleRoleDescription="s" layoutX="125.0" layoutY="124.0" prefWidth="150.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>

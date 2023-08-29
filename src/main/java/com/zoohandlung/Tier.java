@@ -3,6 +3,9 @@ package com.zoohandlung;
 public abstract class Tier {
 
     private final String name;
+
+    private static final String[] tiere = new String[]{"Pferd", "Hund", "Katze"};
+
     private int alter;
     protected double preis;
 
@@ -33,6 +36,8 @@ public abstract class Tier {
     public double getPreis() {
         return preis;
     }
+
+    public static String[] getTiere(){return tiere;}
 
 
 }
