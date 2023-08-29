@@ -10,6 +10,8 @@ public class Hund extends Tier {
 
     private final String rasse;
 
+    private static final String[] rassen = new String[]{"Border Collie", "Schaeferhund", "Mops"};
+
     public Hund(String name, int alter, String rasse, String[] befehle){
         super(name, alter);
         preis = 0;

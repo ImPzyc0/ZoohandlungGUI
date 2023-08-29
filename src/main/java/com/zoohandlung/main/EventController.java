@@ -3,11 +3,15 @@ package com.zoohandlung.main;
 import com.zoohandlung.*;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollBar;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -42,6 +46,8 @@ public class EventController {
         Main.getMainInstanz().setControllerInstanz(this);
         manager = Main.getMainInstanz().getManager();
         zoohandlung = manager.getZoohandlung();
+
+        alternativeTiere = zoohandlung.getTiere();
     }
 
     public void setzeStartWerte(){
@@ -82,6 +88,20 @@ public class EventController {
     @FXML
     protected void onNeuesTierButtonclick(){
         //NeuesTier fenster öffnen, eigener Controller!
+
+        Stage stage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("neues-tier-viewfxml"));
+        Scene scene = null;
+        try {
+            scene = new Scene(fxmlLoader.load());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        stage.setTitle("Neues Tier");
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.setOnCloseRequest(e -> System.exit(0));
+        stage.show();
     }
 
     @FXML

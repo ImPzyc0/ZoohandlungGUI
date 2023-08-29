@@ -6,4 +6,6 @@ module com.zoohandlung.main {
 
     opens com.zoohandlung.main to javafx.fxml;
     exports com.zoohandlung.main;
+    exports com.zoohandlung;
+    opens com.zoohandlung to javafx.fxml;
 }
