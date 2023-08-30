@@ -1,7 +1,6 @@
 package com.zoohandlung;
 
 import java.util.Arrays;
-import java.util.Locale;
 
 public class Zoohandlung {
 
@@ -160,7 +159,7 @@ public class Zoohandlung {
             list[n+niedriegerAlsPivot.length+1] = hoeherAlsPivot[n];
         }
         //Falls sortiert returnen
-        if(istSortiertNachAlter(list,  sortiereNach)){
+        if(istSortiertNach(list,  sortiereNach)){
             return list;
         }
         //Falls nicht, Rekursiv aufrufen und die höhere und niedrigere Liste sortieren
@@ -185,7 +184,7 @@ public class Zoohandlung {
         return true;
     }
 
-    private boolean istSortiertNachAlter(Tier[] list, int sortiereNach) {
+    private boolean istSortiertNach(Tier[] list, int sortiereNach) {
         //In int-Array umwandeln und dann überprüfen, kann dann auch später benutzt werden
         if(list.length < 2){return true;}
 

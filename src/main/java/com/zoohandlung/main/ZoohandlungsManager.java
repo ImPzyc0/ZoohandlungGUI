@@ -34,17 +34,6 @@ public class ZoohandlungsManager {
     }
     //Für jede mögliche Tierart einen Check, ob das möglich wäre, bevor man es hinzufügt, da es im Controller ziemlich hässlich wäre
     //Returned null wenn alle parameter ok waren
-    public int[] neuesPferdCheck(String name, String alter, String preis, String rasse){
-        return null;
-    }
-
-    public int[] neuerHundCheck(String name, String alter, String preis, String rasse, String befehle){
-        return null;
-    }
-
-    public int[] neueKatzeCheck(String name, String alter, String preis, String rasse){
-        return null;
-    }
 
     public Zoohandlung getZoohandlung(){return zoohandlung;}
 

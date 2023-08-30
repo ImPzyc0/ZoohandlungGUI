@@ -4,6 +4,7 @@ import com.zoohandlung.*;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -12,13 +13,17 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class EventController {
+public class EventController implements Initializable {
 
     @FXML
-    private Label tierLabel1, tierLabel2, tierLabel3, tierLabel4, tierLabel5, tierLabel6,rasse, name, alter, preis;
+    private Label tierLabel1, tierLabel2, tierLabel3, tierLabel4, tierLabel5, tierLabel6, rasse, name, alter, preis;
+
+    private Label[] tierLabels;
     @FXML
     private Button neuesTierButton, sortierenNachButton, oeffnenButton, aktionenButton;
     @FXML
@@ -49,8 +54,9 @@ public class EventController {
 
         alternativeTiere = zoohandlung.getTiere();
     }
-
-    public void setzeStartWerte(){
+    @Override
+    public void initialize(URL location, ResourceBundle resources){
+        tierLabels = new Label[]{tierLabel1, tierLabel2, tierLabel3, tierLabel4, tierLabel5, tierLabel6};
         tierScrollBar.setValue(0);
         tierScrollBar.setMax(zoohandlung.getTiere().length-6);
         tierScrollBar.setMin(0);
@@ -154,25 +160,17 @@ public class EventController {
         alternativeTiere = tiere;
         tierScrollBar.setMax(tiere.length-6);
 
-        tierLabel1.setText(tiere.length > 0 ? tiere[(int) tierScrollBar.getValue()].getName()+ " - "+ tiere[(int) tierScrollBar.getValue()].getClass().getSimpleName(): "-");
-        tierLabel2.setText(tiere.length > 1 ? tiere[(int) tierScrollBar.getValue()+1].getName()+ " - "+ tiere[(int) tierScrollBar.getValue()+1].getClass().getSimpleName() : "-");
-        tierLabel3.setText(tiere.length > 2 ? tiere[(int) tierScrollBar.getValue()+2].getName()+ " - "+ tiere[(int) tierScrollBar.getValue()+2].getClass().getSimpleName() : "-");
-        tierLabel4.setText(tiere.length > 3 ? tiere[(int) tierScrollBar.getValue()+3].getName()+ " - "+ tiere[(int) tierScrollBar.getValue()+3].getClass().getSimpleName() : "-");
-        tierLabel5.setText(tiere.length > 4 ? tiere[(int) tierScrollBar.getValue()+4].getName()+ " - "+ tiere[(int) tierScrollBar.getValue()+4].getClass().getSimpleName() : "-");
-        tierLabel6.setText(tiere.length > 5 ? tiere[(int) tierScrollBar.getValue()+5].getName()+ " - "+ tiere[(int) tierScrollBar.getValue()+5].getClass().getSimpleName() : "-");
+        onTierScrollBarUpdate(alternativeTiere);
     }
 
     protected void onTierScrollBarUpdate(Tier[] tiere){
         //Labels neu text setzen
-        tierLabel1.setText(tiere.length > 0 ? tiere[(int) tierScrollBar.getValue()].getName()+ " - "+ tiere[(int) tierScrollBar.getValue()].getClass().getSimpleName(): "-");
-        tierLabel2.setText(tiere.length > 1 ? tiere[(int) tierScrollBar.getValue()+1].getName()+ " - "+ tiere[(int) tierScrollBar.getValue()+1].getClass().getSimpleName() : "-");
-        tierLabel3.setText(tiere.length > 2 ? tiere[(int) tierScrollBar.getValue()+2].getName()+ " - "+ tiere[(int) tierScrollBar.getValue()+2].getClass().getSimpleName() : "-");
-        tierLabel4.setText(tiere.length > 3 ? tiere[(int) tierScrollBar.getValue()+3].getName()+ " - "+ tiere[(int) tierScrollBar.getValue()+3].getClass().getSimpleName() : "-");
-        tierLabel5.setText(tiere.length > 4 ? tiere[(int) tierScrollBar.getValue()+4].getName()+ " - "+ tiere[(int) tierScrollBar.getValue()+4].getClass().getSimpleName() : "-");
-        tierLabel6.setText(tiere.length > 5 ? tiere[(int) tierScrollBar.getValue()+5].getName()+ " - "+ tiere[(int) tierScrollBar.getValue()+5].getClass().getSimpleName() : "-");
+        for(int i = 0; i<6; i++){
+            tierLabels[i].setText(tiere.length > i ? tiere[(int) tierScrollBar.getValue()+i].getName()+ " - "+ tiere[(int) tierScrollBar.getValue()+i].getClass().getSimpleName(): "-");
+        }
     }
 
-    protected void updateTierScrollBarSuche(Tier[] tiere){
+    public void updateTierScrollBarSuche(Tier[] tiere){
         //Labels neu text setzen
         alternativeTiere = tiere;
         onTierScrollBarUpdate(tiere);
@@ -190,7 +188,7 @@ public class EventController {
     protected void onAktionenButtonClick(){
         //Aktionen menü öffnen fürs tier
     }
-
+    //Deutlich schöner als eine Method die das rechnerisch überprüft
     @FXML
     protected void onClickLabel1(){
         setzeAngezeigtesTier(alternativeTiere == null ? zoohandlung.getTiere()[letzterScrollbarWert] : alternativeTiere[letzterScrollbarWert]);
@@ -247,4 +245,5 @@ public class EventController {
         }
         return arrUmsortiert;
     }
+
 }

@@ -19,7 +19,11 @@ public class Main extends Application {
    //Main instanz
    private static Main main;
 
-   //Instanz vom Controller
+    public EventController getController() {
+        return controller;
+    }
+
+    //Instanz vom Controller
     private EventController controller;
 
     //Instanz vom Manager
@@ -53,8 +57,6 @@ public class Main extends Application {
         stage.setResizable(false);
         stage.setOnCloseRequest(e -> System.exit(0));
         stage.show();
-
-        controller.setzeStartWerte();
     }
 
     public static void main(String[] args) {

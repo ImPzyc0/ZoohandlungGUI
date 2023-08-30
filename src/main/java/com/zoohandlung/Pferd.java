@@ -8,6 +8,8 @@ public class Pferd extends Tier {
 
     private final String rasse;
     private static final String[] rassen = new String[]{"Schimmel", "Braun"};
+    public static String[] getRassen(){return rassen;}
+
 
     public Pferd(String name, int alter, String rasse){
         super(name, alter);
