@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Tab;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.util.Arrays;
 
 public class Main extends Application {
 
@@ -50,6 +51,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+       System.out.println(Arrays.toString(UnserSort(new int[]{1,1,1})));
+       System.exit(0);
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Zoohandlung");
@@ -62,4 +65,22 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch();
     }
+
+    public static int[] UnserSort(int[] list){
+        int i = 0;
+        while(i != list.length-1){
+            if(i < list.length-1 && list[i] > list[i+1]){
+                int speicher = list[i];
+                list[i] = list[i+1];
+                list[i+1] = speicher;
+                if(i != 0){
+                    i--;
+                }
+            }else{
+                i++;
+            }
+        }
+        return list;
+    }
+
 }
