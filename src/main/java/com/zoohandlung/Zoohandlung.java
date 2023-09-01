@@ -121,78 +121,27 @@ public class Zoohandlung {
     //Das ganze wiederholen wir in immer kleineren Listen, und irgendwann ist dann die Liste sortiert ;) - Erklärung aus dem Internetz
     //https://www.youtube.com/watch?v=eNUM23f6g-s
     public Tier[] getTiereNachAlter() {
-        return sortiereNach(tiere.clone(), tiere.length/2, 1);
+        return sortiereNach(tiere.clone(), 1);
     }
-    public Tier[] getTiereNachPreis() {return sortiereNach(tiere.clone(), tiere.length/2, 2);}
+    public Tier[] getTiereNachPreis() {return sortiereNach(tiere.clone(), 2);}
 
     //1 - Alter
     //2 - Preis
-    private Tier[] sortiereNach(Tier[] list, int pivot, int sortiereNach){
-        //Returnen falls unnötig
-        if(list.length <2){return list;}
-        //Liste Klonen, Pivot Tier herausfinden
-        Tier pivotTier = list[pivot];
-
-        //In Arrays packen welche Niedriger und welche höher als der Pivot sind
-        Tier[] niedriegerAlsPivot = new Tier[list.length-1];
-        int y = 0;
-        Tier[] hoeherAlsPivot = new Tier[list.length];
+    private Tier[] sortiereNach(Tier[] list, int sortiereNach){
         int i = 0;
-        for(Tier tier : list){
-            if(tier == pivotTier) {continue;}
-            if((sortiereNach == 1 && tier.getAlter() < pivotTier.getAlter()) || (sortiereNach == 2 && tier.getPreis() < pivotTier.getPreis())){
-                niedriegerAlsPivot[y] = tier;
-                y++;
+        while(i != list.length-1){
+            if(i < list.length-1 && ((sortiereNach == 1 && list[i].getAlter() > list[i+1].getAlter()) || (sortiereNach == 2 && list[i].getPreis() > list[i+1].getPreis()))){
+                Tier speicher = list[i];
+                list[i] = list[i+1];
+                list[i+1] = speicher;
+                if(i != 0){
+                    i--;
+                }
             }else{
-                hoeherAlsPivot[i] = tier;
                 i++;
             }
         }
-        //Listen kürzen und zusammentun
-        niedriegerAlsPivot = Arrays.copyOf(niedriegerAlsPivot, y);
-        hoeherAlsPivot = Arrays.copyOf(hoeherAlsPivot, i);
-
-        list = Arrays.copyOf(niedriegerAlsPivot, list.length);
-        list[niedriegerAlsPivot.length] = pivotTier;
-
-        for(int n = 0; n<hoeherAlsPivot.length; n++){
-            list[n+niedriegerAlsPivot.length+1] = hoeherAlsPivot[n];
-        }
-        //Falls sortiert returnen
-        if(istSortiertNach(list,  sortiereNach)){
-            return list;
-        }
-        //Falls nicht, Rekursiv aufrufen und die höhere und niedrigere Liste sortieren
-        niedriegerAlsPivot = Arrays.copyOf(niedriegerAlsPivot, niedriegerAlsPivot.length+1);
-        niedriegerAlsPivot[niedriegerAlsPivot.length-1] = pivotTier;
-        list = Arrays.copyOf(sortiereNach(niedriegerAlsPivot, niedriegerAlsPivot.length/2, sortiereNach), list.length);
-
-        hoeherAlsPivot = sortiereNach(hoeherAlsPivot,hoeherAlsPivot.length/2, sortiereNach);
-        for(int n = 0; n<hoeherAlsPivot.length; n++){
-            list[n+niedriegerAlsPivot.length] = hoeherAlsPivot[n];
-        }
-        //Ende
         return list;
-    }
-
-    private boolean istSortiert(double[] list){
-        for(int i = 0; i<list.length-1; i++){
-            if(list[i] > list[i+1]){
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private boolean istSortiertNach(Tier[] list, int sortiereNach) {
-        //In int-Array umwandeln und dann überprüfen, kann dann auch später benutzt werden
-        if(list.length < 2){return true;}
-
-        double[] list2 = new double[list.length];
-        for (int i = 0; i < list.length; i++) {
-            list2[i] = sortiereNach == 1 ? list[i].getAlter() : list[i].getPreis();
-        }
-        return istSortiert(list2);
     }
 
 }

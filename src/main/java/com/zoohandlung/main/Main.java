@@ -51,8 +51,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-       System.out.println(Arrays.toString(UnserSort(new int[]{1,1,1})));
-       System.exit(0);
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Zoohandlung");
@@ -81,6 +79,20 @@ public class Main extends Application {
             }
         }
         return list;
+    }
+
+    public static int binaereSuche(int Zahl, int[] a){
+        if(a.length == 0){return -1;}
+        int mitte = a[a.length/2];
+        if(Zahl == mitte){
+            return a.length/2;
+        }
+        if(mitte < Zahl){
+           int ergebnis = binaereSuche(Zahl, Arrays.copyOfRange(a, a.length/2, a.length-1));
+           return ergebnis == -1 ? -1 : ergebnis+ a.length /2;
+       }else{
+           return binaereSuche(Zahl, Arrays.copyOfRange(a, 0, a.length/2));
+       }
     }
 
 }
