@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Tab;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.util.Arrays;
 
 public class Main extends Application {
 
@@ -50,6 +51,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+       System.out.println(Arrays.toString(UnserSort(new int[]{1,1,1})));
+       System.exit(0);
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Zoohandlung");
