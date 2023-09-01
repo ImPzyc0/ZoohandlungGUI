@@ -21,7 +21,7 @@ import java.util.TimerTask;
 public class EventController implements Initializable {
 
     @FXML
-    private Label tierLabel1, tierLabel2, tierLabel3, tierLabel4, tierLabel5, tierLabel6, rasse, name, alter, preis;
+    private Label tierLabel1, tierLabel2, tierLabel3, tierLabel4, tierLabel5, tierLabel6, rasse, name, alter, preis, sortiertNach;
 
     private Label[] tierLabels;
     @FXML
@@ -106,7 +106,6 @@ public class EventController implements Initializable {
         stage.setTitle("Neues Tier");
         stage.setScene(scene);
         stage.setResizable(false);
-        stage.setOnCloseRequest(e -> System.exit(0));
         stage.show();
     }
 
@@ -117,6 +116,7 @@ public class EventController implements Initializable {
         //Labels updaten nach Algorithmus
         sortiertNachModus = sortiertNachModusMax == sortiertNachModus ? 0 : sortiertNachModus+1;
         sortierenNachButton.setText(sortiertNachModusText[sortiertNachModus]);
+        sortiertNach.setText("Sortiert nach:    "+sortiertNachModusText[sortiertNachModus-1 < 0 ? sortiertNachModusMax: sortiertNachModus-1]);
         onTierScrollBarUpdate();
         tierScrollBar.setValue(0);
         onClickLabel1();
@@ -125,6 +125,16 @@ public class EventController implements Initializable {
     @FXML
     protected void onSuchenNachEnter(){
         //Von Oben nach unten nach den Ergebnissen sortieren
+        if(suchenNach.getText().length() > 3 && suchenNach.getText().charAt(0) == '%'){
+
+            if(suchenNach.getText().charAt(1) == '$'){
+
+            }else if(suchenNach.getText().charAt(1) == '+'){
+
+            }
+
+            return;
+        }
         updateTierScrollBarSuche(zoohandlung.getTiereNachName(suchenNach.getText()));
 
     }

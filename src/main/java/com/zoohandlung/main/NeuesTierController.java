@@ -52,7 +52,6 @@ public class NeuesTierController implements Initializable {
     }
 
     protected void getTier(ActionEvent event){
-
         String tier = tiere.getValue();
         switch (tier){
             case "Pferd":

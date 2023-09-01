@@ -62,4 +62,22 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch();
     }
+
+    public static int[] UnserSort(int[] list){
+        int i = 0;
+        while(i != list.length-1){
+            if(i < list.length-1 && list[i] > list[i+1]){
+                int speicher = list[i];
+                list[i] = list[i+1];
+                list[i+1] = speicher;
+                if(i != 0){
+                    i--;
+                }
+            }else{
+                i++;
+            }
+        }
+        return list;
+    }
+
 }
