@@ -24,9 +24,9 @@
                      <Font size="20.0" />
                   </font>
                </Button>
-             <Button fx:id="neuesTierButton" mnemonicParsing="false" onAction="#onNeuesTierButtonclick" prefHeight="43.0" prefWidth="402.0" style="-fx-background-color: white;" text="Neues Tier" textAlignment="CENTER">
+             <Button fx:id="neuesTierButton" mnemonicParsing="false" onAction="#onNeuesTierButtonclick" prefHeight="43.0" prefWidth="402.0" style="-fx-background-color: white;" text="Neues Tier" textAlignment="CENTER" wrapText="true">
                   <font>
-                     <Font size="20.0" />
+                     <Font size="15.0" />
                   </font>
                </Button>
                <TextField fx:id="suchenNach" onAction="#onSuchenNachEnter" prefHeight="64.0" promptText="Suche nach..." />

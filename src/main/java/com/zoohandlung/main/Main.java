@@ -11,6 +11,7 @@ import javafx.scene.control.Tab;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.stream.IntStream;
 
 public class Main extends Application {
 
@@ -90,9 +91,9 @@ public class Main extends Application {
         if(mitte < Zahl){
            int ergebnis = binaereSuche(Zahl, Arrays.copyOfRange(a, a.length/2, a.length-1));
            return ergebnis == -1 ? -1 : ergebnis+ a.length /2;
-       }else{
-           return binaereSuche(Zahl, Arrays.copyOfRange(a, 0, a.length/2));
-       }
+        }
+        return binaereSuche(Zahl, Arrays.copyOfRange(a, 0, a.length/2));
     }
+
 
 }
