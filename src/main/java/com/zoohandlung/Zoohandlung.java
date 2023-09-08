@@ -61,12 +61,6 @@ public class Zoohandlung {
         pfleger = neuePfleger;
     }
 
-    public Tier getTier(String name){
-        for(Tier tier : tiere){
-            if(tier.getName().equalsIgnoreCase(name)) return tier;
-        }
-        return null;
-    }
 
     public Pfleger getPfleger(String name){
         for(Pfleger pfl : pfleger){
@@ -79,20 +73,9 @@ public class Zoohandlung {
         return tiere.clone();
     }
 
-    public Tier tierImAlterVon(Tier[] tiere, int alter){
-
-        for(Tier tier : tiere){
-            if(tier.getAlter() == alter) {return tier;}
-        }
-
-        return null;
-
-    }
-
     public Tier[] getTiereNachName(String name){
         Tier[] tiereMitName = new Tier[tiere.length];
         Tier[] tiereMitNamenEnthalten = new Tier[tiere.length];
-
         int i = 0;
         int y = 0;
 
@@ -115,6 +98,35 @@ public class Zoohandlung {
 
         return tiereMitName;
     }
+
+    public Tier[] getTiereMitPreis(int preis){
+        System.out.println("Preis");
+        return null;
+    }
+    public Tier[] getTiereMitAlter(int alter){
+        System.out.println("Alter");
+        return null;
+    }
+    public Tier[] getTiereMitAlterHöher(int alter){
+        System.out.println("> alter");
+        return null;
+    }
+
+    public Tier[] getTiereMitAlterNiedriger(int alter){
+        System.out.println("< alter");
+        return null;
+    }
+    public Tier[] getTiereMitPreisHöher(int preis){
+        System.out.println("> preis");
+        return null;
+    }
+    public Tier[] getTiereMitPreisNiedriger(int preis){
+        System.out.println("< preis");
+        return null;
+    }
+
+
+
 
     //benutzt quicksort, selbst umgesetzt
     //Im Grunde haben wir eine Liste. Wir suchen uns irgendeine Zahl daraus aus. Jetzt schmeißen wir alles was kleiner ist nach links und alles was größer ist nach rechts.

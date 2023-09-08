@@ -25,12 +25,6 @@ public class ZoohandlungsManager {
         zoohandlung.neuesTier(new Katze("björn höcke 8",208,207, "Orange"));
 
         zoohandlung.neuerPfleger("Michael");
-
-        //System.out.println(zoohandlung.tierImAlterVon(zoohandlung.getTiere(), 19) == null ? "Null":zoohandlung.tierImAlterVon(zoohandlung.getTiere(), 20).getName());
-        //Tier[] tiereNachAlter = zoohandlung.getTiereNachAlter();
-        //for(int i = 0; i < tiereNachAlter.length; i++){
-        //    System.out.println("Tier "+i+": "+tiereNachAlter[i].getName());
-        //}
     }
     //Für jede mögliche Tierart einen Check, ob das möglich wäre, bevor man es hinzufügt, da es im Controller ziemlich hässlich wäre
     //Returned null wenn alle parameter ok waren

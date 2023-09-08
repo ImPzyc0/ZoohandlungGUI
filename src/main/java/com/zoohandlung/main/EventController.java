@@ -124,19 +124,85 @@ public class EventController implements Initializable {
 
     @FXML
     protected void onSuchenNachEnter(){
+        String suche = suchenNach.getText();
+        System.out.println(suche);
         //Von Oben nach unten nach den Ergebnissen sortieren
-        if(suchenNach.getText().length() > 3 && suchenNach.getText().charAt(0) == '%'){
+        //Je nach Sortiert wird unterschiedlich gesucht
+        //Falls genaues Ergebnis gesucht wird muss ein "=" davor
+        //Beispiel: 100 input u. Modus alt-Jung/Jung-alt, gibt alle Tiere deren Alter 100 ist zurück
 
-            if(suchenNach.getText().charAt(1) == '$'){
-
-            }else if(suchenNach.getText().charAt(1) == '+'){
-
-            }
-
+        //Sortiert nach und eine Zahl als Input gibt je nachdem ein Ergebnis nach Preis
+        //Beispiel: 100 input u. Modus alt-jung, gibt alle Tiere über 100 Wochen (oder gleich 100 Wochen, bei allen) alt zurück
+        //Beispiel: 100 input u. Modus günstig-teuer, gibt alle Tiere die billiger als 100 sind
+        //Beispiel: "ldsajfkldasfj" als input u. Modus günstig-teuer such nach dem String, da es keine Zahl ist
+        if(suche.isEmpty()){
             return;
         }
-        updateTierScrollBarSuche(zoohandlung.getTiereNachName(suchenNach.getText()));
 
+        int sucheZahl = 0;
+        boolean genaueSuche = false;
+        if(suche.charAt(0) == '='){
+            genaueSuche = true;
+            if(suche.length() == 1){
+                updateTierScrollBarSuche(zoohandlung.getTiereNachName(suche));
+                return;
+            }
+            //Nach bestimmten Wert suchen
+            String sucheNeu = suche.substring(1);
+            try{
+                sucheZahl = Integer.parseInt(sucheNeu);
+            }catch(ClassCastException x){
+                updateTierScrollBarSuche(zoohandlung.getTiereNachName(suche));
+                return;
+            }
+        }
+        if(!genaueSuche){
+            try{
+                sucheZahl = Integer.parseInt(suche);
+            }catch(ClassCastException x){
+                updateTierScrollBarSuche(zoohandlung.getTiereNachName(suche));
+                return;
+            }
+        }
+        //Falls nicht nach einem bestimmten Wert gesucht wird
+        switch (sortiertNachModus){
+            //Jung-alt
+            case 1:
+                if(genaueSuche){
+                    updateTierScrollBarSuche(zoohandlung.getTiereMitAlter(sucheZahl));
+                }else{
+                    updateTierScrollBarSuche(zoohandlung.getTiereMitAlterNiedriger(sucheZahl));
+                }
+                break;
+            //alt-jung
+            case 2:
+                if(genaueSuche){
+                    updateTierScrollBarSuche(zoohandlung.getTiereMitAlter(sucheZahl));
+                }else{
+                    updateTierScrollBarSuche(zoohandlung.getTiereMitAlterHöher(sucheZahl));
+                }
+                break;
+            //Günstig-teuer
+            case 3:
+                if(genaueSuche){
+                    updateTierScrollBarSuche(zoohandlung.getTiereMitPreis(sucheZahl));
+                }else{
+                    updateTierScrollBarSuche(zoohandlung.getTiereMitPreisNiedriger(sucheZahl));
+                }
+                break;
+            //teuer-günstig
+            case 4:
+                if(genaueSuche){
+                    updateTierScrollBarSuche(zoohandlung.getTiereMitPreis(sucheZahl));
+                }else{
+                    updateTierScrollBarSuche(zoohandlung.getTiereMitPreisHöher(sucheZahl));
+                }
+                break;
+            //Standard
+            default:
+                updateTierScrollBarSuche(zoohandlung.getTiereNachName(suche));
+                break;
+        }
     }
 
     protected void onTierScrollBarUpdate(){

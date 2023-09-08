@@ -166,6 +166,12 @@ public class NeuesTierController implements Initializable {
                 break;
         }
 
+        TIER_FIELDS[tier][1].setText("");
+        TIER_FIELDS[tier][0].setText("");
+        TIER_FIELDS[tier][2].setText("");
+        RASSE_BOXEN[tier].setValue(null);
+
+        errorLabel.setText("Tier Hinzugefügt!");
         mainInstanz.getController().updateTierScrollBarSuche(Main.getMainInstanz().getManager().getZoohandlung().getTiere());
     }
 }

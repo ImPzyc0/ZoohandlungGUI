@@ -11,7 +11,6 @@ import javafx.scene.control.Tab;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.stream.IntStream;
 
 public class Main extends Application {
 
@@ -52,6 +51,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        System.out.println(Arrays.toString(Quicksort(new int[]{1,2,4,3})));
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Zoohandlung");
@@ -82,18 +82,31 @@ public class Main extends Application {
         return list;
     }
 
-    public static int binaereSuche(int Zahl, int[] a){
-        if(a.length == 0){return -1;}
-        int mitte = a[a.length/2];
-        if(Zahl == mitte){
-            return a.length/2;
+    public static int[] Quicksort(int[] list){
+        int pivot = list[list.length-1];
+        int pivotIndex = list.length-1;
+        for(int i = 0; i< list.length/2; i++) {
+            int y = list.length-2-i;
+            if(y<i){break;}
+            do{
+                System.out.println(list[i]+ " : "+list[y]+" : "+pivot);
+                if (list[i] > pivot && list[y] < pivot) {
+                    Wechseln(list, i, y);
+                    pivotIndex = i;
+                    break;
+                }
+                y--;
+            }while(i<=y);
         }
-        if(mitte < Zahl){
-           int ergebnis = binaereSuche(Zahl, Arrays.copyOfRange(a, a.length/2, a.length-1));
-           return ergebnis == -1 ? -1 : ergebnis+ a.length /2;
-        }
-        return binaereSuche(Zahl, Arrays.copyOfRange(a, 0, a.length/2));
+        Wechseln(list, pivotIndex, list.length-1);
+        return list;
     }
 
+    public static void Wechseln(int[] a, int b, int c){
+        System.out.println("l");
+       int temp = a[b];
+       a[b] = a[c];
+       a[c] = temp;
+    }
 
 }
