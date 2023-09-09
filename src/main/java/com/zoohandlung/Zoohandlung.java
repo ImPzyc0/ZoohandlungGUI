@@ -130,7 +130,7 @@ public class Zoohandlung {
     public Tier[] getTiereMitAlterHoeher(int alter){
         Tier[] tiereNachAlter = getTiereNachAlter();
         for(int i = 0; i < tiereNachAlter.length;i++){
-            if(alter >= tiereNachAlter[i].getAlter()){
+            if(alter <= tiereNachAlter[i].getAlter()){
                 return Arrays.copyOfRange(tiereNachAlter, i, tiereNachAlter.length);
             }
         }
@@ -141,7 +141,7 @@ public class Zoohandlung {
     public Tier[] getTiereMitAlterNiedriger(int alter){
         Tier[] tiereNachAlter = getTiereNachAlter();
         for(int i = tiereNachAlter.length-1; i > -1;i--){
-            if(alter <= tiereNachAlter[i].getAlter()){
+            if(alter >= tiereNachAlter[i].getAlter()){
                 return Arrays.copyOfRange(tiereNachAlter, 0, i+1);
             }
         }
@@ -151,7 +151,7 @@ public class Zoohandlung {
     public Tier[] getTiereMitPreisHoeher(int preis){
         Tier[] tiereNachPreis = getTiereNachPreis();
         for(int i = 0; i < tiereNachPreis.length;i++){
-            if(preis >= (int) tiereNachPreis[i].getPreis()){
+            if(preis <= (int) tiereNachPreis[i].getPreis()){
                 return Arrays.copyOfRange(tiereNachPreis, i, tiereNachPreis.length);
             }
         }
@@ -161,7 +161,7 @@ public class Zoohandlung {
     public Tier[] getTiereMitPreisNiedriger(int preis){
         Tier[] tiereNachPreis = getTiereNachPreis();
         for(int i = tiereNachPreis.length-1; i > -1;i--){
-            if(preis <= (int) tiereNachPreis[i].getPreis()){
+            if(preis >= (int) tiereNachPreis[i].getPreis()){
                 return Arrays.copyOfRange(tiereNachPreis, 0, i+1);
             }
         }
