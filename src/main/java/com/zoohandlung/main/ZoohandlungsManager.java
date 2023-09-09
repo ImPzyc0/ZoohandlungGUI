@@ -15,7 +15,7 @@ public class ZoohandlungsManager {
 
         zoohandlung = new Zoohandlung("lll");
 
-        zoohandlung.neuesTier(new Katze("Nieve 1",20,20, "Orange"));
+        zoohandlung.neuesTier(new Katze("Nieve 1",201,200, "Orange"));
         zoohandlung.neuesTier(new Katze("Luna 2",202, 201,"Orange"));
         zoohandlung.neuesTier(new Katze("fluffy 3",203,202, "Orange"));
         zoohandlung.neuesTier(new Katze("kylo 4",204, 203,"Orange"));
@@ -27,12 +27,7 @@ public class ZoohandlungsManager {
         zoohandlung.neuerPfleger("Michael");
     }
     //Für jede mögliche Tierart einen Check, ob das möglich wäre, bevor man es hinzufügt, da es im Controller ziemlich hässlich wäre
-    //Returned null wenn alle parameter ok waren
+    //Returned null, wenn alle parameter ok waren
 
     public Zoohandlung getZoohandlung(){return zoohandlung;}
-
-    public void speicherDateien(){
-
-    }
-
 }

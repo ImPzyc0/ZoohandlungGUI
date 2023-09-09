@@ -44,9 +44,6 @@ public class NeuesTierController implements Initializable {
     @FXML
     private CheckBox lieg, platz;
 
-    @FXML
-    private Button katzeEnter, hundEnter, pferdEnter;
-
     private Main mainInstanz;
 
     @Override
@@ -172,6 +169,7 @@ public class NeuesTierController implements Initializable {
         RASSE_BOXEN[tier].setValue(null);
 
         errorLabel.setText("Tier Hinzugefügt!");
-        mainInstanz.getController().updateTierScrollBarSuche(Main.getMainInstanz().getManager().getZoohandlung().getTiere());
+        mainInstanz.getController().setSortiertNachModus(-1);
+        mainInstanz.getController().updateAlternativeTiere();
     }
 }

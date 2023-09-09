@@ -24,7 +24,7 @@
                      <Font size="20.0" />
                   </font>
                </Button>
-             <Button fx:id="neuesTierButton" mnemonicParsing="false" onAction="#onNeuesTierButtonclick" prefHeight="43.0" prefWidth="402.0" style="-fx-background-color: white;" text="Neues Tier" textAlignment="CENTER" wrapText="true">
+             <Button mnemonicParsing="false" onAction="#onNeuesTierButtonclick" prefHeight="43.0" prefWidth="402.0" style="-fx-background-color: white;" text="Neues Tier" textAlignment="CENTER" wrapText="true">
                   <font>
                      <Font size="15.0" />
                   </font>
@@ -58,7 +58,7 @@
                <Font size="25.0" />
             </font>
          </Label>
-         <Button fx:id="aktionenButton" mnemonicParsing="false" onAction="#onAktionenButtonClick" prefHeight="26.0" prefWidth="560.0" style="-fx-background-color: #79797a;" text="Aktionen">
+         <Button mnemonicParsing="false" onAction="#onAktionenButtonClick" prefHeight="26.0" prefWidth="560.0" style="-fx-background-color: #79797a;" text="Aktionen">
             <font>
                <Font size="25.0" />
             </font>

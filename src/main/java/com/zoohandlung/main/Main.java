@@ -51,7 +51,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        System.out.println(Arrays.toString(Quicksort(new int[]{1,2,4,3})));
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Zoohandlung");

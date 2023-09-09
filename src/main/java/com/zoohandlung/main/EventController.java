@@ -25,7 +25,7 @@ public class EventController implements Initializable {
 
     private Label[] tierLabels;
     @FXML
-    private Button neuesTierButton, sortierenNachButton, oeffnenButton, aktionenButton;
+    private Button sortierenNachButton, oeffnenButton;
     @FXML
     private TextField suchenNach;
     @FXML
@@ -63,7 +63,7 @@ public class EventController implements Initializable {
         tierScrollBar.setVisibleAmount(1);
         tierScrollBar.setUnitIncrement(1);
         tierScrollBar.setBlockIncrement(1);
-        onTierScrollBarUpdate();
+        tierLabelsUpdate();
         Timer timer = new Timer();
         letzterScrollbarWert = (int) tierScrollBar.getValue();
         timer.scheduleAtFixedRate(new TimerTask() {
@@ -73,7 +73,7 @@ public class EventController implements Initializable {
                     Platform.runLater(new Runnable() {
                         @Override
                         public void run() {
-                            onTierScrollBarUpdate();
+                            tierLabelsUpdate();
                         }
                     });
                 }
@@ -111,13 +111,13 @@ public class EventController implements Initializable {
 
     @FXML
     protected void onSortierenNachButtonClick(){
-        alternativeTiere = null;
-
+        suchenNach.setText("");
         //Labels updaten nach Algorithmus
         sortiertNachModus = sortiertNachModusMax == sortiertNachModus ? 0 : sortiertNachModus+1;
         sortierenNachButton.setText(sortiertNachModusText[sortiertNachModus]);
         sortiertNach.setText("Sortiert nach:    "+sortiertNachModusText[sortiertNachModus-1 < 0 ? sortiertNachModusMax: sortiertNachModus-1]);
-        onTierScrollBarUpdate();
+        updateAlternativeTiere();
+        tierLabelsUpdate();
         tierScrollBar.setValue(0);
         onClickLabel1();
     }
@@ -125,16 +125,15 @@ public class EventController implements Initializable {
     @FXML
     protected void onSuchenNachEnter(){
         String suche = suchenNach.getText();
-        System.out.println(suche);
         //Von Oben nach unten nach den Ergebnissen sortieren
         //Je nach Sortiert wird unterschiedlich gesucht
         //Falls genaues Ergebnis gesucht wird muss ein "=" davor
         //Beispiel: 100 input u. Modus alt-Jung/Jung-alt, gibt alle Tiere deren Alter 100 ist zurück
 
-        //Sortiert nach und eine Zahl als Input gibt je nachdem ein Ergebnis nach Preis
-        //Beispiel: 100 input u. Modus alt-jung, gibt alle Tiere über 100 Wochen (oder gleich 100 Wochen, bei allen) alt zurück
-        //Beispiel: 100 input u. Modus günstig-teuer, gibt alle Tiere die billiger als 100 sind
-        //Beispiel: "ldsajfkldasfj" als input u. Modus günstig-teuer such nach dem String, da es keine Zahl ist
+        //Sortiert nach und eine Zahl als Input gibt alle Tiere die passen
+        //Beispiel: 100 input u. Modus alt-jung, gibt alle Tiere über oder gleich 100 Wochen alt zurück
+        //Beispiel: 100 input u. Modus günstig-teuer, gibt alle Tiere die billiger oder gleich 100 sind
+        //Beispiel: "ldsajfkldasfj" als input u. Modus günstig-teuer sucht nach dem String, da es keine Zahl ist
         if(suche.isEmpty()){
             return;
         }
@@ -151,7 +150,7 @@ public class EventController implements Initializable {
             String sucheNeu = suche.substring(1);
             try{
                 sucheZahl = Integer.parseInt(sucheNeu);
-            }catch(ClassCastException x){
+            }catch(NumberFormatException x){
                 updateTierScrollBarSuche(zoohandlung.getTiereNachName(suche));
                 return;
             }
@@ -159,7 +158,7 @@ public class EventController implements Initializable {
         if(!genaueSuche){
             try{
                 sucheZahl = Integer.parseInt(suche);
-            }catch(ClassCastException x){
+            }catch(NumberFormatException x){
                 updateTierScrollBarSuche(zoohandlung.getTiereNachName(suche));
                 return;
             }
@@ -179,7 +178,7 @@ public class EventController implements Initializable {
                 if(genaueSuche){
                     updateTierScrollBarSuche(zoohandlung.getTiereMitAlter(sucheZahl));
                 }else{
-                    updateTierScrollBarSuche(zoohandlung.getTiereMitAlterHöher(sucheZahl));
+                    updateTierScrollBarSuche(zoohandlung.getTiereMitAlterHoeher(sucheZahl));
                 }
                 break;
             //Günstig-teuer
@@ -195,7 +194,7 @@ public class EventController implements Initializable {
                 if(genaueSuche){
                     updateTierScrollBarSuche(zoohandlung.getTiereMitPreis(sucheZahl));
                 }else{
-                    updateTierScrollBarSuche(zoohandlung.getTiereMitPreisHöher(sucheZahl));
+                    updateTierScrollBarSuche(zoohandlung.getTiereMitPreisHoeher(sucheZahl));
                 }
                 break;
             //Standard
@@ -205,14 +204,7 @@ public class EventController implements Initializable {
         }
     }
 
-    protected void onTierScrollBarUpdate(){
-
-        if(alternativeTiere != null){
-            onTierScrollBarUpdate(alternativeTiere);
-            return;
-        }
-
-        //Labels neu text setzen
+    public void updateAlternativeTiere(){
         Tier[] tiere;
         switch(sortiertNachModus){
             case 0:
@@ -234,29 +226,32 @@ public class EventController implements Initializable {
                 return;
         }
         alternativeTiere = tiere;
-        tierScrollBar.setMax(tiere.length-6);
-
-        onTierScrollBarUpdate(alternativeTiere);
+        tierLabelsUpdate();
+        updateScrollBar();
     }
 
-    protected void onTierScrollBarUpdate(Tier[] tiere){
+    protected void updateTierScrollBarSuche(Tier[] tiere){
         //Labels neu text setzen
-        for(int i = 0; i<6; i++){
-            tierLabels[i].setText(tiere.length > i ? tiere[(int) tierScrollBar.getValue()+i].getName()+ " - "+ tiere[(int) tierScrollBar.getValue()+i].getClass().getSimpleName(): "-");
+        alternativeTiere = tiere;
+        tierLabelsUpdate();
+        updateScrollBar();
+    }
+
+    private void updateScrollBar(){
+        tierScrollBar.setValue(0);
+        tierScrollBar.setMax(alternativeTiere.length-6);
+
+        if(alternativeTiere.length > 0){
+            setzeAngezeigtesTier(alternativeTiere[0]);
+        }else{
+            setzeAngezeigtesTier(null);
         }
     }
 
-    public void updateTierScrollBarSuche(Tier[] tiere){
+    protected void tierLabelsUpdate(){
         //Labels neu text setzen
-        alternativeTiere = tiere;
-        onTierScrollBarUpdate(tiere);
-
-        tierScrollBar.setValue(0);
-        tierScrollBar.setMax(tiere.length-6);
-        tierScrollBar.setMin(0);
-
-        if(tiere.length > 0){
-            setzeAngezeigtesTier(tiere[0]);
+        for(int i = 0; i<6; i++){
+            tierLabels[i].setText(alternativeTiere.length > i ? alternativeTiere[(int) tierScrollBar.getValue()+i].getName()+ " - "+ alternativeTiere[(int) tierScrollBar.getValue()+i].getClass().getSimpleName(): "-");
         }
     }
 
@@ -291,6 +286,16 @@ public class EventController implements Initializable {
     }
 
     private void setzeAngezeigtesTier(Tier tier){
+
+        if(tier == null){
+            rasse.setText("Rasse: -");
+            name.setText("Name: -");
+            alter.setText("Alter: -");
+            preis.setText("Preis: -");
+
+            return;
+        }
+
         switch (tier.getClass().getSimpleName()) {
             case "Katze":
                 Katze katze = (Katze) tier;
@@ -302,7 +307,7 @@ public class EventController implements Initializable {
                 break;
             case "Pferd":
                 Pferd pferd = (Pferd) tier;
-                rasse.setText("Rasse: Katze - "+pferd.getRasse());
+                rasse.setText("Rasse: Pferd - "+pferd.getRasse());
                 break;
             default:
                 rasse.setText("Rasse: "+tier.getClass().getSimpleName());
@@ -321,5 +326,15 @@ public class EventController implements Initializable {
         }
         return arrUmsortiert;
     }
+
+    public void setSortiertNachModus(int sortiertNachModus) {
+        suchenNach.setText("");
+        //Labels updaten nach Algorithmus
+        sortiertNachModus = sortiertNachModusMax == sortiertNachModus ? 0 : sortiertNachModus+1;
+        sortierenNachButton.setText(sortiertNachModusText[sortiertNachModus]);
+        sortiertNach.setText("Sortiert nach:    "+sortiertNachModusText[sortiertNachModus-1 < 0 ? sortiertNachModusMax: sortiertNachModus-1]);
+        this.sortiertNachModus = sortiertNachModus;
+    }
+
 
 }

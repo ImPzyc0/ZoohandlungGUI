@@ -100,38 +100,75 @@ public class Zoohandlung {
     }
 
     public Tier[] getTiereMitPreis(int preis){
-        System.out.println("Preis");
-        return null;
+        Tier[] tiereNachPreis = getTiereNachPreis();
+        int unteresEnde = -1;
+        for(int i = 0; i < tiereNachPreis.length;i++){
+            if(unteresEnde == -1 && preis == (int) tiereNachPreis[i].getPreis()){
+                unteresEnde = i;
+            }else if(unteresEnde != -1 && preis != (int) tiereNachPreis[i].getPreis()) {
+                return Arrays.copyOfRange(tiereNachPreis, unteresEnde, i);
+
+            }
+        }
+
+        return unteresEnde == -1 ? new Tier[0] : Arrays.copyOfRange(tiereNachPreis, unteresEnde, tiereNachPreis.length);
     }
     public Tier[] getTiereMitAlter(int alter){
-        System.out.println("Alter");
-        return null;
+        Tier[] tiereNachAlter = getTiereNachAlter();
+        int unteresEnde = -1;
+        for(int i = 0; i < tiereNachAlter.length;i++){
+            if(unteresEnde == -1 && alter == tiereNachAlter[i].getAlter()){
+                unteresEnde = i;
+            }else if(unteresEnde != -1 && alter != tiereNachAlter[i].getAlter()) {
+                return Arrays.copyOfRange(tiereNachAlter, unteresEnde, i);
+
+            }
+        }
+
+        return unteresEnde == -1 ? new Tier[0] : Arrays.copyOfRange(tiereNachAlter, unteresEnde, tiereNachAlter.length);
     }
-    public Tier[] getTiereMitAlterHöher(int alter){
-        System.out.println("> alter");
-        return null;
+    public Tier[] getTiereMitAlterHoeher(int alter){
+        Tier[] tiereNachAlter = getTiereNachAlter();
+        for(int i = 0; i < tiereNachAlter.length;i++){
+            if(alter >= tiereNachAlter[i].getAlter()){
+                return Arrays.copyOfRange(tiereNachAlter, i, tiereNachAlter.length);
+            }
+        }
+
+        return new Tier[0];
     }
 
     public Tier[] getTiereMitAlterNiedriger(int alter){
-        System.out.println("< alter");
-        return null;
+        Tier[] tiereNachAlter = getTiereNachAlter();
+        for(int i = tiereNachAlter.length-1; i > -1;i--){
+            if(alter <= tiereNachAlter[i].getAlter()){
+                return Arrays.copyOfRange(tiereNachAlter, 0, i+1);
+            }
+        }
+
+        return new Tier[0];
     }
-    public Tier[] getTiereMitPreisHöher(int preis){
-        System.out.println("> preis");
-        return null;
+    public Tier[] getTiereMitPreisHoeher(int preis){
+        Tier[] tiereNachPreis = getTiereNachPreis();
+        for(int i = 0; i < tiereNachPreis.length;i++){
+            if(preis >= (int) tiereNachPreis[i].getPreis()){
+                return Arrays.copyOfRange(tiereNachPreis, i, tiereNachPreis.length);
+            }
+        }
+
+        return new Tier[0];
     }
     public Tier[] getTiereMitPreisNiedriger(int preis){
-        System.out.println("< preis");
-        return null;
+        Tier[] tiereNachPreis = getTiereNachPreis();
+        for(int i = tiereNachPreis.length-1; i > -1;i--){
+            if(preis <= (int) tiereNachPreis[i].getPreis()){
+                return Arrays.copyOfRange(tiereNachPreis, 0, i+1);
+            }
+        }
+
+        return new Tier[0];
     }
 
-
-
-
-    //benutzt quicksort, selbst umgesetzt
-    //Im Grunde haben wir eine Liste. Wir suchen uns irgendeine Zahl daraus aus. Jetzt schmeißen wir alles was kleiner ist nach links und alles was größer ist nach rechts.
-    //Das ganze wiederholen wir in immer kleineren Listen, und irgendwann ist dann die Liste sortiert ;) - Erklärung aus dem Internetz
-    //https://www.youtube.com/watch?v=eNUM23f6g-s
     public Tier[] getTiereNachAlter() {
         return sortiereNach(tiere.clone(), 1);
     }
