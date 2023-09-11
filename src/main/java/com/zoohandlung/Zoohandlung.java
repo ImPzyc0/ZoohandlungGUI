@@ -72,7 +72,7 @@ public class Zoohandlung {
     public Tier[] getTiere(){
         return tiere.clone();
     }
-
+    //Gibt ein Tier Array zurück mit den Tieren, die den namen teilweise/vollständig haben
     public Tier[] getTiereNachName(String name){
         Tier[] tiereMitName = new Tier[tiere.length];
         Tier[] tiereMitNamenEnthalten = new Tier[tiere.length];
@@ -98,35 +98,52 @@ public class Zoohandlung {
 
         return tiereMitName;
     }
-
+    //Geben ein Tier Array zurück mit allen Tieren mit dem jeweiligen Preis oder Alter (binäre Suche)
     public Tier[] getTiereMitPreis(int preis){
         Tier[] tiereNachPreis = getTiereNachPreis();
-        int unteresEnde = -1;
-        for(int i = 0; i < tiereNachPreis.length;i++){
-            if(unteresEnde == -1 && preis == (int) tiereNachPreis[i].getPreis()){
-                unteresEnde = i;
-            }else if(unteresEnde != -1 && preis != (int) tiereNachPreis[i].getPreis()) {
-                return Arrays.copyOfRange(tiereNachPreis, unteresEnde, i);
-
-            }
+        int[] tiereNachPreisIntArray = new int[tiereNachPreis.length];
+        for(int i = 0; i<tiereNachPreis.length; i++){
+            tiereNachPreisIntArray[i] = (int) tiereNachPreis[i].getPreis();
+        }
+        //Position eines Ergebnisses finden, welches passt
+        int ergebnis = binaereSuche(preis, tiereNachPreisIntArray);
+        System.out.println(ergebnis);
+        if(ergebnis == -1){return new Tier[0];}
+        //Alle Tiere drüber und drunter mit dem gleichem Alter finden
+        int unteresLimit;
+        for(unteresLimit = ergebnis; unteresLimit > 0; unteresLimit--){
+            if(tiereNachPreisIntArray[unteresLimit-1] != preis){ break;}
+        }
+        int oberesLimit;
+        for(oberesLimit = ergebnis; oberesLimit< tiereNachPreisIntArray.length; oberesLimit++){
+            if(preis != tiereNachPreisIntArray[oberesLimit]){break;}
         }
 
-        return unteresEnde == -1 ? new Tier[0] : Arrays.copyOfRange(tiereNachPreis, unteresEnde, tiereNachPreis.length);
+        return Arrays.copyOfRange(tiereNachPreis, unteresLimit, oberesLimit);
     }
     public Tier[] getTiereMitAlter(int alter){
         Tier[] tiereNachAlter = getTiereNachAlter();
-        int unteresEnde = -1;
-        for(int i = 0; i < tiereNachAlter.length;i++){
-            if(unteresEnde == -1 && alter == tiereNachAlter[i].getAlter()){
-                unteresEnde = i;
-            }else if(unteresEnde != -1 && alter != tiereNachAlter[i].getAlter()) {
-                return Arrays.copyOfRange(tiereNachAlter, unteresEnde, i);
-
-            }
+        int[] tiereNachAlterIntArray = new int[tiereNachAlter.length];
+        for(int i = 0; i<tiereNachAlter.length; i++){
+            tiereNachAlterIntArray[i] = tiereNachAlter[i].getAlter();
+        }
+        //Position eines Ergebnisses finden, welches passt
+        int ergebnis = binaereSuche(alter, tiereNachAlterIntArray);
+        System.out.println(ergebnis);
+        if(ergebnis == -1){return new Tier[0];}
+        //Alle Tiere drüber und drunter mit dem gleichem Alter finden
+        int unteresLimit;
+        for(unteresLimit = ergebnis; unteresLimit > 0; unteresLimit--){
+            if(tiereNachAlterIntArray[unteresLimit-1] != alter){ break;}
+        }
+        int oberesLimit;
+        for(oberesLimit = ergebnis; oberesLimit< tiereNachAlterIntArray.length; oberesLimit++){
+            if(alter != tiereNachAlterIntArray[oberesLimit]){break;}
         }
 
-        return unteresEnde == -1 ? new Tier[0] : Arrays.copyOfRange(tiereNachAlter, unteresEnde, tiereNachAlter.length);
+        return Arrays.copyOfRange(tiereNachAlter, unteresLimit, oberesLimit);
     }
+    //Geben das Tier Array gekürzt je nach Parameter passend zurück (lineare Suche)
     public Tier[] getTiereMitAlterHoeher(int alter){
         Tier[] tiereNachAlter = getTiereNachAlter();
         for(int i = 0; i < tiereNachAlter.length;i++){
@@ -137,7 +154,6 @@ public class Zoohandlung {
 
         return new Tier[0];
     }
-
     public Tier[] getTiereMitAlterNiedriger(int alter){
         Tier[] tiereNachAlter = getTiereNachAlter();
         for(int i = tiereNachAlter.length-1; i > -1;i--){
@@ -169,13 +185,12 @@ public class Zoohandlung {
         return new Tier[0];
     }
 
-    public Tier[] getTiereNachAlter() {
-        return sortiereNach(tiere.clone(), 1);
-    }
+    public Tier[] getTiereNachAlter() {return sortiereNach(tiere.clone(), 1);}
     public Tier[] getTiereNachPreis() {return sortiereNach(tiere.clone(), 2);}
 
     //1 - Alter
     //2 - Preis
+    //Gibt das Array sortiert nach der Angabe zurück
     private Tier[] sortiereNach(Tier[] list, int sortiereNach){
         int i = 0;
         while(i != list.length-1){
@@ -191,6 +206,25 @@ public class Zoohandlung {
             }
         }
         return list;
+    }
+    //Da es leichter war es kurz in ein Int-Array zu verwandeln, da ich so oder so danach noch
+    public static int binaereSuche(int zahl, int[] a){
+        int y = 0;
+        int i = a.length-1;
+        while(y <= i){
+            int mitte = (i-y)/2+y;
+            if(a[mitte] == zahl){
+                return mitte;
+            }
+
+            if(a[mitte] < zahl){
+                y = mitte+1;
+            }else{
+                i = mitte-1;
+            }
+        }
+
+        return -1;
     }
 
 }

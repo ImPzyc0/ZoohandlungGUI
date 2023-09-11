@@ -14,9 +14,6 @@ import java.util.Arrays;
 
 public class Main extends Application {
 
-    //Variablen fürs lesen der JSON-Dateien:
-
-
    //Main instanz
    private static Main main;
 
@@ -64,6 +61,8 @@ public class Main extends Application {
         launch();
     }
 
+    //Der Code für den Algorithmus des sortieren der Tiere
+        /*
     public static int[] UnserSort(int[] list){
         int i = 0;
         while(i != list.length-1){
@@ -80,32 +79,25 @@ public class Main extends Application {
         }
         return list;
     }
+    //Der Code für den Algorithmus des suchen nach Tieren
+    public static int binaereSuche(int zahl, int[] a){
+       int y = 0;
+       int i = a.length-1;
+        while(y <= i){
+            int mitte = (i-y)/2+y;
+            if(a[mitte] == zahl){
+                return mitte;
+            }
 
-    public static int[] Quicksort(int[] list){
-        int pivot = list[list.length-1];
-        int pivotIndex = list.length-1;
-        for(int i = 0; i< list.length/2; i++) {
-            int y = list.length-2-i;
-            if(y<i){break;}
-            do{
-                System.out.println(list[i]+ " : "+list[y]+" : "+pivot);
-                if (list[i] > pivot && list[y] < pivot) {
-                    Wechseln(list, i, y);
-                    pivotIndex = i;
-                    break;
-                }
-                y--;
-            }while(i<=y);
+            if(a[mitte] < zahl){
+                y = mitte+1;
+            }else{
+                i = mitte-1;
+            }
         }
-        Wechseln(list, pivotIndex, list.length-1);
-        return list;
-    }
 
-    public static void Wechseln(int[] a, int b, int c){
-        System.out.println("l");
-       int temp = a[b];
-       a[b] = a[c];
-       a[c] = temp;
+        return -1;
     }
+         */
 
 }

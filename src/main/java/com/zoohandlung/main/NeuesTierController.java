@@ -17,6 +17,7 @@ import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public class NeuesTierController implements Initializable {
+    //Der Controller wenn ein neues Tier gemacht wird, damit der EventController nicht zu voll ist
 
     @FXML
     private ChoiceBox<String> tiere = new ChoiceBox<>();

@@ -6,7 +6,8 @@ import com.zoohandlung.Zoohandlung;
 
 public class ZoohandlungsManager {
 
-    //Json-files laden und speichern
+    //Die Main-Klasse sollte nur die Methoden haben, um das Programm laufen zu können und die Controller sollten auch nicht die Zoohandlung haben, weshalb es den ZoohandlungsManager gibt
+    //der eigentlich nur die Zoohandlung regelt
 
     private Zoohandlung zoohandlung;
 
@@ -26,8 +27,6 @@ public class ZoohandlungsManager {
 
         zoohandlung.neuerPfleger("Michael");
     }
-    //Für jede mögliche Tierart einen Check, ob das möglich wäre, bevor man es hinzufügt, da es im Controller ziemlich hässlich wäre
-    //Returned null, wenn alle parameter ok waren
 
     public Zoohandlung getZoohandlung(){return zoohandlung;}
 }
