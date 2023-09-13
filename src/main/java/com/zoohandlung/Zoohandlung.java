@@ -19,6 +19,9 @@ public class Zoohandlung {
 
     public void geöffnet(){
         System.out.println("geöffnet "+ ladenId);
+        for(Tier tier : tiere){
+            tier.setzeAktionenAusgeführt(false);
+        }
     }
 
     public void neuesTier(Tier tier){
@@ -61,12 +64,14 @@ public class Zoohandlung {
         pfleger = neuePfleger;
     }
 
-
     public Pfleger getPfleger(String name){
         for(Pfleger pfl : pfleger){
             if(pfl.getName().equalsIgnoreCase(name)) return pfl;
         }
         return null;
+    }
+    public Pfleger[] getPfleger(){
+        return pfleger.clone();
     }
 
     public Tier[] getTiere(){

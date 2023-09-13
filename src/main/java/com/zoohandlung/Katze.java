@@ -28,4 +28,14 @@ public class Katze extends Tier {
         System.out.println("miau");
     }
 
+    @Override
+    public String[] getAktionen() {
+        return new String[]{"macheGeräusche"};
+    }
+
+    @Override
+    public void aktionenAusfuehren(String aktionen) {
+        macheGeräusche();
+    }
+
 }

@@ -15,7 +15,6 @@ public class Pfleger {
     }
 
     public String getName() {
-
         return name;
     }
 

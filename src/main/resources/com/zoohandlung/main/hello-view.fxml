@@ -10,30 +10,52 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox id="VBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="347.0" minWidth="583.0" prefHeight="360.0" prefWidth="583.0" spacing="20.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zoohandlung.main.EventController">
+<VBox id="VBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="347.0" minWidth="583.0" prefHeight="432.0" prefWidth="583.0" spacing="20.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zoohandlung.main.EventController">
   <padding>
     <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
   </padding>
-   <VBox prefHeight="258.0" prefWidth="543.0">
+   <VBox prefHeight="49.0" prefWidth="543.0">
       <children>
-         <ButtonBar prefHeight="43.0" prefWidth="494.0">
-           <buttons>
-            
-                    <Button fx:id="oeffnenButton" onAction="#onOeffnenButtonClick" prefHeight="43.0" prefWidth="164.0" style="-fx-background-color: white;" text="Öffnen" textAlignment="CENTER">
+         <AnchorPane prefHeight="26.0" prefWidth="543.0">
+            <children>
+               <Label fx:id="sortiertNach" layoutX="287.0" layoutY="-1.0" minWidth="1.0" prefHeight="50.0" prefWidth="123.0" style="-fx-background-color: white; -fx-text-alignment: center;" text="Sortiert nach:    Standard" textAlignment="CENTER" wrapText="true">
                   <font>
-                     <Font size="20.0" />
+                     <Font size="14.0" />
                   </font>
-               </Button>
-             <Button mnemonicParsing="false" onAction="#onNeuesTierButtonclick" prefHeight="43.0" prefWidth="402.0" style="-fx-background-color: white;" text="Neues Tier" textAlignment="CENTER" wrapText="true">
+               </Label>
+               <Label fx:id="geld" layoutX="22.0" layoutY="-1.0" prefHeight="50.0" prefWidth="123.0" style="-fx-background-color: white; -fx-text-alignment: center;" text="Geld: 0€" textAlignment="CENTER">
+                  <font>
+                     <Font size="19.0" />
+                  </font>
+               </Label>
+               <Label fx:id="suchtNach" layoutX="156.0" layoutY="-1.0" prefHeight="50.0" prefWidth="123.0" style="-fx-background-color: white; -fx-text-alignment: center;" text="Sucht nach:   Namen" textAlignment="CENTER" wrapText="true">
+                  <font>
+                     <Font size="15.0" />
+                  </font>
+               </Label>
+            </children>
+         </AnchorPane>
+      </children>
+   </VBox>
+   <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="215.0" prefWidth="543.0">
+      <children>
+         <ButtonBar prefHeight="144.0" prefWidth="543.0">
+           <buttons>
+             <Button mnemonicParsing="false" onAction="#onNeuesTierButtonclick" prefHeight="53.0" prefWidth="402.0" style="-fx-background-color: white;" text="Neues Tier" textAlignment="CENTER" wrapText="true">
                   <font>
                      <Font size="15.0" />
                   </font>
                </Button>
-               <TextField fx:id="suchenNach" onAction="#onSuchenNachEnter" prefHeight="64.0" promptText="Suche nach..." />
-               <Label fx:id="sortiertNach" minWidth="1.0" prefHeight="44.0" style="-fx-background-color: white; -fx-text-alignment: center;" text="Sortiert nach:    Standard" textAlignment="CENTER" wrapText="true" />
-               <Button fx:id="sortierenNachButton" mnemonicParsing="false" onAction="#onSortierenNachButtonClick" prefHeight="93.0" style="-fx-background-color: white;" text="Jung - Alt">
+               <TextField fx:id="suchenNach" onAction="#onSuchenNachEnter" prefHeight="118.0" promptText="Suche nach..." />
+               <Button fx:id="sortierenNachButton" mnemonicParsing="false" onAction="#onSortierenNachButtonClick" prefHeight="93.0" style="-fx-background-color: white; -fx-text-alignment: center;" text="Sortiere nach: Jung - Alt" textAlignment="CENTER" wrapText="true">
                   <font>
                      <Font size="11.0" />
+                  </font>
+               </Button>
+            
+                    <Button fx:id="oeffnenButton" onAction="#onOeffnenButtonClick" prefHeight="43.0" prefWidth="164.0" style="-fx-background-color: white;" text="Öffnen" textAlignment="CENTER">
+                  <font>
+                     <Font size="20.0" />
                   </font>
                </Button>
            </buttons>
@@ -65,15 +87,15 @@
          </Button>
       </children>
    </VBox>
-   <AnchorPane prefHeight="398.0" prefWidth="543.0">
+   <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="83.0" prefWidth="544.0">
       <children>
-         <ScrollBar fx:id="tierScrollBar" layoutX="5.0" orientation="VERTICAL" prefHeight="84.0" prefWidth="19.0" style="-fx-background-color: grey;" />
-         <Label fx:id="tierLabel1" layoutX="25.0" layoutY="-4.0" onMousePressed="#onClickLabel1" prefHeight="36.0" prefWidth="219.0" text="Mimi" />
-         <Label fx:id="tierLabel2" layoutX="25.0" layoutY="27.0" onMousePressed="#onClickLabel2" prefHeight="36.0" prefWidth="219.0" text="Mimi" />
-         <Label fx:id="tierLabel3" layoutX="25.0" layoutY="54.0" onMousePressed="#onClickLabel3" prefHeight="36.0" prefWidth="219.0" text="Mimi" />
-         <Label fx:id="tierLabel4" layoutX="268.0" layoutY="-4.0" onMousePressed="#onClickLabel4" prefHeight="36.0" prefWidth="219.0" text="Mimi" />
-         <Label fx:id="tierLabel5" layoutX="268.0" layoutY="27.0" onMousePressed="#onClickLabel5" prefHeight="36.0" prefWidth="219.0" text="Mimi" />
-         <Label fx:id="tierLabel6" layoutX="268.0" layoutY="54.0" onMousePressed="#onClickLabel6" prefHeight="36.0" prefWidth="219.0" text="Mimi" />
+         <ScrollBar fx:id="tierScrollBar" layoutY="18.0" orientation="VERTICAL" prefHeight="84.0" prefWidth="19.0" style="-fx-background-color: grey;" />
+         <Label fx:id="tierLabel1" layoutX="20.0" layoutY="14.0" onMousePressed="#onClickLabel1" prefHeight="36.0" prefWidth="219.0" text="Mimi" />
+         <Label fx:id="tierLabel2" layoutX="20.0" layoutY="45.0" onMousePressed="#onClickLabel2" prefHeight="36.0" prefWidth="219.0" text="Mimi" />
+         <Label fx:id="tierLabel3" layoutX="20.0" layoutY="72.0" onMousePressed="#onClickLabel3" prefHeight="36.0" prefWidth="219.0" text="Mimi" />
+         <Label fx:id="tierLabel4" layoutX="263.0" layoutY="14.0" onMousePressed="#onClickLabel4" prefHeight="36.0" prefWidth="219.0" text="Mimi" />
+         <Label fx:id="tierLabel5" layoutX="263.0" layoutY="45.0" onMousePressed="#onClickLabel5" prefHeight="36.0" prefWidth="219.0" text="Mimi" />
+         <Label fx:id="tierLabel6" layoutX="263.0" layoutY="72.0" onMousePressed="#onClickLabel6" prefHeight="36.0" prefWidth="219.0" text="Mimi" />
       </children>
    </AnchorPane>
 </VBox>

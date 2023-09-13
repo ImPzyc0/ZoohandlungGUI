@@ -22,7 +22,7 @@ public class EventController implements Initializable {
     //Der Controller für die normale GUI, hat alle Elemente und managed input und was angezeigt werden soll
 
     @FXML
-    private Label tierLabel1, tierLabel2, tierLabel3, tierLabel4, tierLabel5, tierLabel6, rasse, name, alter, preis, sortiertNach;
+    private Label tierLabel1, tierLabel2, tierLabel3, tierLabel4, tierLabel5, tierLabel6, rasse, name, alter, preis, sortiertNach, suchtNach, geld;
     private Label[] tierLabels;
     @FXML
     private Button sortierenNachButton, oeffnenButton;
@@ -37,6 +37,12 @@ public class EventController implements Initializable {
 
     private int letzterScrollbarWert = 0;
 
+    public void setAktionenFensterOffen(boolean aktionenFensterOffen) {
+        this.aktionenFensterOffen = aktionenFensterOffen;
+    }
+
+    private boolean aktionenFensterOffen = false;
+
     //0 - normal sortiert
     //1 - nach Alter (jung-alt)
     //2 - nach Alter (alt-jung)
@@ -45,7 +51,10 @@ public class EventController implements Initializable {
     //Darf ja keine Enums verwenden, deshalb so hässlich
     private int sortiertNachModus = 0;
     private final String[] sortiertNachModusText = new String[]{"Jung - Alt", "Alt - Jung", "Günstig - Teuer", "Teuer - Günstig","Standard"};
+    private final String[] suchtNachText = new String[]{"Name", "Nicht Älter", "Nicht Jünger", "Nicht Teurer", "Nicht Günstiger"};
     private final int sortiertNachModusMax = 4;
+
+    private Tier aktuellAngezeigtesTier = null;
 
     public EventController(){
         Main.getMainInstanz().setControllerInstanz(this);
@@ -114,8 +123,9 @@ public class EventController implements Initializable {
         suchenNach.setText("");
         //Labels updaten nach Algorithmus
         sortiertNachModus = sortiertNachModusMax == sortiertNachModus ? 0 : sortiertNachModus+1;
-        sortierenNachButton.setText(sortiertNachModusText[sortiertNachModus]);
-        sortiertNach.setText("Sortiert nach:    "+sortiertNachModusText[sortiertNachModus-1 < 0 ? sortiertNachModusMax: sortiertNachModus-1]);
+        sortierenNachButton.setText("Sortieren nach:  " + sortiertNachModusText[sortiertNachModus]);
+        sortiertNach.setText("Sortiert nach: "+sortiertNachModusText[sortiertNachModus-1 < 0 ? sortiertNachModusMax: sortiertNachModus-1]);
+        suchtNach.setText("Sucht nach:    "+suchtNachText[sortiertNachModus]);
         updateAlternativeTiere();
         tierLabelsUpdate();
         tierScrollBar.setValue(0);
@@ -258,6 +268,23 @@ public class EventController implements Initializable {
     @FXML
     protected void onAktionenButtonClick(){
         //Aktionen menü öffnen fürs tier
+        Tier tier = aktuellAngezeigtesTier;
+        if(aktuellAngezeigtesTier == null || aktionenFensterOffen || tier.aktionenAusgeführt()){return;}
+        aktionenFensterOffen = true;
+        Stage stage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("aktionen-view.fxml"));
+        Scene scene = null;
+        try {
+            scene = new Scene(fxmlLoader.load());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        stage.setTitle("Aktionen: "+tier.getName());
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.setOnCloseRequest(e -> aktionenFensterOffen = false);
+        stage.show();
+
     }
     //Deutlich schöner als eine Method die das rechnerisch überprüft
     @FXML
@@ -286,7 +313,7 @@ public class EventController implements Initializable {
     }
 
     private void setzeAngezeigtesTier(Tier tier){
-
+        aktuellAngezeigtesTier = tier;
         if(tier == null){
             rasse.setText("Rasse: -");
             name.setText("Name: -");
@@ -336,5 +363,7 @@ public class EventController implements Initializable {
         this.sortiertNachModus = sortiertNachModus;
     }
 
-
+    public Tier getAktuellAngezeigtesTier(){
+        return aktuellAngezeigtesTier;
+    }
 }

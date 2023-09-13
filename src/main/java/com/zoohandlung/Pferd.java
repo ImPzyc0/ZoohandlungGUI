@@ -28,4 +28,14 @@ public class Pferd extends Tier {
         System.out.println("hühühühühühühhühühhühü");
     }
 
+    @Override
+    public String[] getAktionen() {
+        return new String[]{"macheGeräusche"};
+    }
+
+    @Override
+    public void aktionenAusfuehren(String aktionen) {
+        macheGeräusche();
+    }
+
 }

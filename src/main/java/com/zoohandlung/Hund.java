@@ -46,4 +46,23 @@ public class Hund extends Tier {
     public void macheGeräusche() {
         System.out.println("Wau");
     }
+
+    @Override
+    public String[] getAktionen() {
+        String[] str = new String[befehle.length+1];
+        for(int i = 0; i< befehle.length; i++){
+            str[i]= befehle[i];
+        }
+        str[befehle.length] = "macheGeräusche";
+        return str;
+    }
+
+    @Override
+    public void aktionenAusfuehren(String aktionen) {
+        if(aktionen.equals("macheGeräusche")){
+            macheGeräusche();
+        }else {
+            befehl(aktionen);
+        }
+    }
 }

@@ -11,6 +11,8 @@ public class ZoohandlungsManager {
 
     private Zoohandlung zoohandlung;
 
+    private double geld = 0;
+
     public void ladDateien(){
         //Vorerst erstellt nur eine Zoohandlung
 

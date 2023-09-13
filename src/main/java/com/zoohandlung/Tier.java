@@ -4,6 +4,8 @@ public abstract class Tier {
 
     private final String name;
 
+    private boolean aktionenAusgeführt;
+
     private static final String[] tiere = new String[]{"Pferd", "Hund", "Katze"};
 
     private int alter;
@@ -39,5 +41,14 @@ public abstract class Tier {
 
     public static String[] getTiere(){return tiere;}
 
+    public abstract String[] getAktionen();
 
+    public boolean aktionenAusgeführt(){
+        return aktionenAusgeführt;
+    }
+    public void setzeAktionenAusgeführt(boolean aktionenAusgeführt){
+        this.aktionenAusgeführt = aktionenAusgeführt;
+    }
+
+    public abstract void aktionenAusfuehren(String aktionen);
 }
