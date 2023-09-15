@@ -8,9 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.util.Arrays;
@@ -83,7 +81,6 @@ public class NeuesTierController implements Initializable {
         pferdPane.setVisible(false);
         katzePane.setVisible(false);
     }
-
     protected void zeigeKatzeView(){
         hundPane.setVisible(false);
         pferdPane.setVisible(false);
@@ -130,8 +127,23 @@ public class NeuesTierController implements Initializable {
             errorLabel.setText("Ungültiger Preis!");
             return;
         }
+
+        if(preis <= 0){
+            errorLabel.setText("Preis kann nicht negativ oder null sein!");
+            return;
+        }
+        if(alter <= 0){
+            errorLabel.setText("Alter kann nicht negativ oder null sein!");
+            return;
+        }
+
+        if(mainInstanz.getManager().getZoohandlung().getGeld() - preis < 0){
+            errorLabel.setText("Tier ist zu teuer!");
+            return;
+        }
+
         if(TIER_FIELDS[tier][2].getText().length() < 3){
-            errorLabel.setText("Ungültiger Name!");
+            errorLabel.setText("Name muss mindestens 3 Zeichen lang sein!");
             return;
         }
         name = TIER_FIELDS[tier][2].getText();
@@ -170,7 +182,8 @@ public class NeuesTierController implements Initializable {
         RASSE_BOXEN[tier].setValue(null);
 
         errorLabel.setText("Tier Hinzugefügt!");
-        mainInstanz.getController().setSortiertNachModus(-1);
+        mainInstanz.getController().setzeSortiertNachModus(-1);
         mainInstanz.getController().updateAlternativeTiere();
+        mainInstanz.getController().updateGeldLabel();
     }
 }

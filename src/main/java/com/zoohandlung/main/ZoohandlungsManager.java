@@ -1,7 +1,6 @@
 package com.zoohandlung.main;
 
 import com.zoohandlung.Katze;
-import com.zoohandlung.Tier;
 import com.zoohandlung.Zoohandlung;
 
 public class ZoohandlungsManager {
@@ -11,9 +10,7 @@ public class ZoohandlungsManager {
 
     private Zoohandlung zoohandlung;
 
-    private double geld = 0;
-
-    public void ladDateien(){
+    public void ladZoohandlung(){
         //Vorerst erstellt nur eine Zoohandlung
 
         zoohandlung = new Zoohandlung("lll");

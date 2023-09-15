@@ -1,5 +1,7 @@
 package com.zoohandlung;
 
+import com.zoohandlung.main.Main;
+
 import java.util.Arrays;
 
 public class Zoohandlung {
@@ -8,6 +10,8 @@ public class Zoohandlung {
     private Tier[] tiere = new Tier[0];
 
     private final String ladenId;
+    //Geld startet bei 0 da die Anfängertiere kosten und abgerechnet werden
+    private double geld = 1600+7+6+5+4+3+2+1;
 
     public Zoohandlung(String ladenId){
         this.ladenId = ladenId;
@@ -20,7 +24,7 @@ public class Zoohandlung {
     public void geöffnet(){
         System.out.println("geöffnet "+ ladenId);
         for(Tier tier : tiere){
-            tier.setzeAktionenAusgeführt(false);
+            tier.setAktionenAusgefuehrt(false);
         }
     }
 
@@ -33,7 +37,7 @@ public class Zoohandlung {
             y = i+1;
         }
         neueTiere[y] = tier;
-
+        geld = geld-tier.getPreis();
         tiere = neueTiere;
     }
 
@@ -47,7 +51,7 @@ public class Zoohandlung {
             neueTiere[y] = tiere[i];
             y++;
         }
-
+        geld = tier.getPreis()+geld;
         tiere = neueTiere;
     }
 
@@ -73,6 +77,11 @@ public class Zoohandlung {
     public Pfleger[] getPfleger(){
         return pfleger.clone();
     }
+
+    public double getGeld() {
+        return geld;
+    }
+
 
     public Tier[] getTiere(){
         return tiere.clone();
@@ -197,6 +206,7 @@ public class Zoohandlung {
     //2 - Preis
     //Gibt das Array sortiert nach der Angabe zurück
     private Tier[] sortiereNach(Tier[] list, int sortiereNach){
+        if(tiere.length < 2){return list;}
         int i = 0;
         while(i != list.length-1){
             if(i < list.length-1 && ((sortiereNach == 1 && list[i].getAlter() > list[i+1].getAlter()) || (sortiereNach == 2 && list[i].getPreis() > list[i+1].getPreis()))){

@@ -7,14 +7,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="363.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zoohandlung.main.AktionenController">
    <children>
       <AnchorPane prefHeight="415.0" prefWidth="363.0">
          <children>
             <ChoiceBox fx:id="pfleger" layoutX="79.0" layoutY="212.0" prefHeight="49.0" prefWidth="205.0" />
             <ChoiceBox fx:id="aktion" layoutX="79.0" layoutY="91.0" prefHeight="49.0" prefWidth="205.0" />
-            <Button layoutX="78.0" layoutY="295.0" mnemonicParsing="false" onAction="#onAktion" prefHeight="74.0" prefWidth="206.0" text="Ausführen!" textAlignment="CENTER">
+            <Button layoutX="157.0" layoutY="295.0" mnemonicParsing="false" onAction="#onAktion" prefHeight="74.0" prefWidth="192.0" text="Ausführen!" textAlignment="CENTER">
                <font>
                   <Font size="31.0" />
                </font>
@@ -34,6 +33,11 @@
                   <Font size="16.0" />
                </font>
             </Label>
+            <Button layoutX="14.0" layoutY="295.0" mnemonicParsing="false" onAction="#onTierVerkaufen" prefHeight="74.0" prefWidth="133.0" text="Tier Verkaufen!">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </children>

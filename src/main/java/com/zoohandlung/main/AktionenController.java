@@ -27,7 +27,7 @@ public class AktionenController implements Initializable {
             errorLabel.setText("Bitte Pfleger und Aktion auswählen!");
             return;
         }
-        tier.setzeAktionenAusgeführt(true);
+        tier.setAktionenAusgefuehrt(true);
         Main.getMainInstanz().getManager().getZoohandlung().getPfleger(pfleger.getValue()).versorgTier(tier);
 
         tier.aktionenAusfuehren(aktion.getValue());
@@ -45,5 +45,22 @@ public class AktionenController implements Initializable {
             pfleger.getItems().add(pfleger1.getName());
         }
         aktion.getItems().addAll(tier.getAktionen());
+    }
+
+    @FXML
+    protected void onTierVerkaufen(){
+
+        Main.getMainInstanz().getManager().getZoohandlung().verkaufTier(tier);
+
+        Main.getMainInstanz().getController().setzeSortiertNachModus(-1);
+        Main.getMainInstanz().getController().updateTierScrollBarSuche(Main.getMainInstanz().getManager().getZoohandlung().getTiere());
+        Main.getMainInstanz().getController().updateAlternativeTiere();
+
+        Main.getMainInstanz().getController().updateGeldLabel();
+
+        Stage stage = (Stage) pfleger.getScene().getWindow();
+        Main.getMainInstanz().getController().setAktionenFensterOffen(false);
+        stage.close();
+
     }
 }

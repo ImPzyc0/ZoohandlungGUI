@@ -25,7 +25,7 @@ public class EventController implements Initializable {
     private Label tierLabel1, tierLabel2, tierLabel3, tierLabel4, tierLabel5, tierLabel6, rasse, name, alter, preis, sortiertNach, suchtNach, geld;
     private Label[] tierLabels;
     @FXML
-    private Button sortierenNachButton, oeffnenButton;
+    private Button sortierenNachButton, oeffnenButton, aktionenButton;
     @FXML
     private TextField suchenNach;
     @FXML
@@ -72,7 +72,7 @@ public class EventController implements Initializable {
         tierScrollBar.setVisibleAmount(1);
         tierScrollBar.setUnitIncrement(1);
         tierScrollBar.setBlockIncrement(1);
-        tierLabelsUpdate();
+        updateTierLabels();
         Timer timer = new Timer();
         letzterScrollbarWert = (int) tierScrollBar.getValue();
         timer.scheduleAtFixedRate(new TimerTask() {
@@ -82,7 +82,7 @@ public class EventController implements Initializable {
                     Platform.runLater(new Runnable() {
                         @Override
                         public void run() {
-                            tierLabelsUpdate();
+                            updateTierLabels();
                         }
                     });
                 }
@@ -127,9 +127,11 @@ public class EventController implements Initializable {
         sortiertNach.setText("Sortiert nach: "+sortiertNachModusText[sortiertNachModus-1 < 0 ? sortiertNachModusMax: sortiertNachModus-1]);
         suchtNach.setText("Sucht nach:    "+suchtNachText[sortiertNachModus]);
         updateAlternativeTiere();
-        tierLabelsUpdate();
+        updateTierLabels();
         tierScrollBar.setValue(0);
-        onClickLabel1();
+        if(alternativeTiere.length > 0){
+            onClickLabel1();
+        }
     }
 
     @FXML
@@ -236,20 +238,24 @@ public class EventController implements Initializable {
                 return;
         }
         alternativeTiere = tiere;
-        tierLabelsUpdate();
+        updateTierLabels();
         updateScrollBar();
     }
 
-    private void updateTierScrollBarSuche(Tier[] tiere){
+    public void updateTierScrollBarSuche(Tier[] tiere){
         //Labels neu text setzen
         alternativeTiere = tiere;
         updateScrollBar();
-        tierLabelsUpdate();
+        updateTierLabels();
     }
 
     private void updateScrollBar(){
-        tierScrollBar.setValue(0);
         tierScrollBar.setMax(alternativeTiere.length-6);
+        tierScrollBar.setValue(0);
+
+        //Ein bug, bei dem wenn man eine Scrollbar das Maximum auf 1 stellt es sich verhält als wäre das Maximum 0,
+        //wenn man es auf 2 stellt es jedoch wieder normal funktioniert. Deshalb kann man wenn es 7 Tiere gibt das letzte nicht sehen.
+        //Ich hab versucht es durch das verändern der GUI zu beheben, leider funktioniert dies nicht.
 
         if(alternativeTiere.length > 0){
             setzeAngezeigtesTier(alternativeTiere[0]);
@@ -258,18 +264,31 @@ public class EventController implements Initializable {
         }
     }
 
-    private void tierLabelsUpdate(){
+    private void updateTierLabels(){
         //Labels neu text setzen
         for(int i = 0; i<6; i++){
             tierLabels[i].setText(alternativeTiere.length > i ? alternativeTiere[(int) tierScrollBar.getValue()+i].getName()+ " - "+ alternativeTiere[(int) tierScrollBar.getValue()+i].getClass().getSimpleName(): "-");
         }
     }
 
+    public void updateGeldLabel(){
+        this.geld.setText("Geld: "+Main.getMainInstanz().getManager().getZoohandlung().getGeld()+"€");
+    }
+
     @FXML
     protected void onAktionenButtonClick(){
         //Aktionen menü öffnen fürs tier
         Tier tier = aktuellAngezeigtesTier;
-        if(aktuellAngezeigtesTier == null || aktionenFensterOffen || tier.aktionenAusgeführt()){return;}
+        if(aktuellAngezeigtesTier == null){
+            aktionenButton.setText("Kein Tier angezeigt!");
+            return;
+        }else if(aktionenFensterOffen){
+            aktionenButton.setText("Aktionen Fenster bereits offen!");
+            return;
+        }else if(tier.aktionenAusgefuehrt()){
+            aktionenButton.setText("Tier hat heute schon etwas getan!");
+            return;
+        }
         aktionenFensterOffen = true;
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("aktionen-view.fxml"));
@@ -314,6 +333,7 @@ public class EventController implements Initializable {
 
     private void setzeAngezeigtesTier(Tier tier){
         aktuellAngezeigtesTier = tier;
+        aktionenButton.setText("Aktionen");
         if(tier == null){
             rasse.setText("Rasse: -");
             name.setText("Name: -");
@@ -354,7 +374,7 @@ public class EventController implements Initializable {
         return arrUmsortiert;
     }
 
-    public void setSortiertNachModus(int sortiertNachModus) {
+    public void setzeSortiertNachModus(int sortiertNachModus) {
         suchenNach.setText("");
         //Labels updaten nach Algorithmus
         sortiertNachModus = sortiertNachModusMax == sortiertNachModus ? 0 : sortiertNachModus+1;

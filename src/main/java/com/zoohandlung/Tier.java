@@ -43,10 +43,10 @@ public abstract class Tier {
 
     public abstract String[] getAktionen();
 
-    public boolean aktionenAusgeführt(){
+    public boolean aktionenAusgefuehrt(){
         return aktionenAusgeführt;
     }
-    public void setzeAktionenAusgeführt(boolean aktionenAusgeführt){
+    public void setAktionenAusgefuehrt(boolean aktionenAusgeführt){
         this.aktionenAusgeführt = aktionenAusgeführt;
     }
 
