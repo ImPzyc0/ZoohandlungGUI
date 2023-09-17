@@ -2,6 +2,7 @@ package com.zoohandlung.main;
 
 import com.zoohandlung.Pfleger;
 import com.zoohandlung.Tier;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
@@ -19,6 +20,8 @@ public class AktionenController implements Initializable {
     private ChoiceBox<String> pfleger, aktion;
     @FXML
     private Label errorLabel;
+    private EventController controller;
+    private ZoohandlungsManager manager;
 
     @FXML
     protected void onAktion() {
@@ -28,13 +31,15 @@ public class AktionenController implements Initializable {
             return;
         }
         tier.setAktionenAusgefuehrt(true);
-        Main.getMainInstanz().getManager().getZoohandlung().getPfleger(pfleger.getValue()).versorgTier(tier);
+        manager.getZoohandlung().pflegerVersorgtTier(manager.getZoohandlung().getPfleger(pfleger.getValue()));
 
         tier.aktionenAusfuehren(aktion.getValue());
 
         Stage stage = (Stage) pfleger.getScene().getWindow();
-        Main.getMainInstanz().getController().setAktionenFensterOffen(false);
+        controller.setAktionenFensterOffen(false);
         stage.close();
+
+        controller.updateAktivePfleger();
     }
 
     @Override
@@ -45,21 +50,24 @@ public class AktionenController implements Initializable {
             pfleger.getItems().add(pfleger1.getName());
         }
         aktion.getItems().addAll(tier.getAktionen());
+
+        manager = Main.getMainInstanz().getManager();
+        controller = Main.getMainInstanz().getController();
     }
 
     @FXML
     protected void onTierVerkaufen(){
 
-        Main.getMainInstanz().getManager().getZoohandlung().verkaufTier(tier);
+        manager.getZoohandlung().verkaufTier(tier);
 
-        Main.getMainInstanz().getController().setzeSortiertNachModus(-1);
-        Main.getMainInstanz().getController().updateTierScrollBarSuche(Main.getMainInstanz().getManager().getZoohandlung().getTiere());
-        Main.getMainInstanz().getController().updateAlternativeTiere();
+        controller.setzeSortiertNachModus(-1);
+        controller.updateTierScrollBarSuche(Main.getMainInstanz().getManager().getZoohandlung().getTiere());
+        controller.updateAlternativeTiere();
 
-        Main.getMainInstanz().getController().updateGeldLabel();
+        controller.updateGeldLabel();
 
         Stage stage = (Stage) pfleger.getScene().getWindow();
-        Main.getMainInstanz().getController().setAktionenFensterOffen(false);
+        controller.setAktionenFensterOffen(false);
         stage.close();
 
     }

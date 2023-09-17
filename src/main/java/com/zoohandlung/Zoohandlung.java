@@ -1,12 +1,11 @@
 package com.zoohandlung;
 
-import com.zoohandlung.main.Main;
-
 import java.util.Arrays;
 
 public class Zoohandlung {
 
     private Pfleger[] pfleger = new Pfleger[0];
+    private Pfleger[] aktivePfleger = new Pfleger[0];
     private Tier[] tiere = new Tier[0];
 
     private final String ladenId;
@@ -17,15 +16,15 @@ public class Zoohandlung {
         this.ladenId = ladenId;
     }
 
-    public void schließen(){
-        System.out.println("geschlossen "+ ladenId);
+    public void schliessen(){
+        System.out.println("ka2");
     }
 
-    public void geöffnet(){
-        System.out.println("geöffnet "+ ladenId);
+    public void geoffnet(){
         for(Tier tier : tiere){
             tier.setAktionenAusgefuehrt(false);
         }
+        aktivePfleger = pfleger.clone();
     }
 
     public void neuesTier(Tier tier){
@@ -55,7 +54,7 @@ public class Zoohandlung {
         tiere = neueTiere;
     }
 
-    public void neuerPfleger(String name){
+    public void neuerPfleger(String name, int preis){
         Pfleger[] neuePfleger = new Pfleger[pfleger.length+1];
         int y = 0;
         for(int i = 0; i<pfleger.length; i++){
@@ -63,25 +62,36 @@ public class Zoohandlung {
             neuePfleger[i] = pfleger[i];
             y = i+1;
         }
-        neuePfleger[y] = new Pfleger("Michael");
+        neuePfleger[y] = new Pfleger(name);
 
         pfleger = neuePfleger;
+
+        Pfleger[] neueAktivePfleger = new Pfleger[aktivePfleger.length+1];
+        int z = 0;
+        for(int i = 0; i<aktivePfleger.length; i++){
+            neueAktivePfleger[i] = aktivePfleger[i];
+            z = i+1;
+        }
+        neueAktivePfleger[z] = new Pfleger(name);
+
+        aktivePfleger = neueAktivePfleger;
+
+        geld = geld-preis;
     }
 
     public Pfleger getPfleger(String name){
-        for(Pfleger pfl : pfleger){
+        for(Pfleger pfl : aktivePfleger){
             if(pfl.getName().equalsIgnoreCase(name)) return pfl;
         }
         return null;
     }
     public Pfleger[] getPfleger(){
-        return pfleger.clone();
+        return aktivePfleger.clone();
     }
 
     public double getGeld() {
         return geld;
     }
-
 
     public Tier[] getTiere(){
         return tiere.clone();
@@ -121,7 +131,6 @@ public class Zoohandlung {
         }
         //Position eines Ergebnisses finden, welches passt
         int ergebnis = binaereSuche(preis, tiereNachPreisIntArray);
-        System.out.println(ergebnis);
         if(ergebnis == -1){return new Tier[0];}
         //Alle Tiere drüber und drunter mit dem gleichem Alter finden
         int unteresLimit;
@@ -223,7 +232,7 @@ public class Zoohandlung {
         return list;
     }
     //Da es leichter war es kurz in ein Int-Array zu verwandeln, da ich so oder so danach noch
-    public static int binaereSuche(int zahl, int[] a){
+    public int binaereSuche(int zahl, int[] a){
         int y = 0;
         int i = a.length-1;
         while(y <= i){
@@ -242,4 +251,15 @@ public class Zoohandlung {
         return -1;
     }
 
+    public void pflegerVersorgtTier(Pfleger pfleger) {
+        Pfleger[] neueAktivePfleger = new Pfleger[aktivePfleger.length - 1];
+        int y = 0;
+        for (int i = 0; i < aktivePfleger.length; i++) {
+            if (aktivePfleger[i].equals(pfleger)) {
+                continue;
+            }
+            neueAktivePfleger[y] = aktivePfleger[i];
+        }
+        aktivePfleger = neueAktivePfleger;
+    }
 }

@@ -30,12 +30,16 @@ public class Katze extends Tier {
 
     @Override
     public String[] getAktionen() {
-        return new String[]{"macheGeräusche"};
+        return new String[]{"macheGeräusche", "seiWütend"};
     }
 
     @Override
     public void aktionenAusfuehren(String aktionen) {
-        macheGeräusche();
+        if(aktionen.equals("macheGeräusche")){
+            macheGeräusche();
+        }else{
+            seiWütend();
+        }
     }
 
 }

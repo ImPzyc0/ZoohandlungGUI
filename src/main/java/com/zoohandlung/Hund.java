@@ -49,11 +49,12 @@ public class Hund extends Tier {
 
     @Override
     public String[] getAktionen() {
-        String[] str = new String[befehle.length+1];
+        String[] str = new String[befehle.length+2];
         for(int i = 0; i< befehle.length; i++){
             str[i]= befehle[i];
         }
         str[befehle.length] = "macheGeräusche";
+        str[befehle.length+1] = "seiWütend";
         return str;
     }
 

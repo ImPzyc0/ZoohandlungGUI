@@ -24,7 +24,8 @@ public class ZoohandlungsManager {
         zoohandlung.neuesTier(new Katze("mort 7",207,206, "Orange"));
         zoohandlung.neuesTier(new Katze("björn höcke 8",208,207, "Orange"));
 
-        zoohandlung.neuerPfleger("Michael");
+        zoohandlung.neuerPfleger("Michael", 0);
+        zoohandlung.neuerPfleger("Kakauka", 0);
     }
 
     public Zoohandlung getZoohandlung(){return zoohandlung;}

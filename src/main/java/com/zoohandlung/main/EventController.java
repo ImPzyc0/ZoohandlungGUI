@@ -22,7 +22,7 @@ public class EventController implements Initializable {
     //Der Controller für die normale GUI, hat alle Elemente und managed input und was angezeigt werden soll
 
     @FXML
-    private Label tierLabel1, tierLabel2, tierLabel3, tierLabel4, tierLabel5, tierLabel6, rasse, name, alter, preis, sortiertNach, suchtNach, geld;
+    private Label tierLabel1, tierLabel2, tierLabel3, tierLabel4, tierLabel5, tierLabel6, rasse, name, alter, preis, sortiertNach, suchtNach, geld, istOffen, aktivePfleger;
     private Label[] tierLabels;
     @FXML
     private Button sortierenNachButton, oeffnenButton, aktionenButton;
@@ -98,6 +98,14 @@ public class EventController implements Initializable {
     @FXML
     protected void onOeffnenButtonClick() {
         oeffnenButton.setText(oeffnenButton.getText().equals("Öffnen") ? "Schließen":"Öffnen");
+        istOffen.setText(oeffnenButton.getText().equals("Öffnen") ? "Handlung ist geschlossen":"Handlung ist offen");
+        updateAktivePfleger();
+        if(istOffen.getText().equals("Handlung ist offen")){
+            zoohandlung.geoffnet();
+            aktionenButton.setText("Aktionen");
+        }else{
+            zoohandlung.schliessen();
+        }
     }
 
     @FXML
@@ -288,6 +296,9 @@ public class EventController implements Initializable {
         }else if(tier.aktionenAusgefuehrt()){
             aktionenButton.setText("Tier hat heute schon etwas getan!");
             return;
+        }else if(istOffen.getText().equals("Handlung ist geschlossen")){
+            aktionenButton.setText("Handlung ist geschlossen!");
+            return;
         }
         aktionenFensterOffen = true;
         Stage stage = new Stage();
@@ -329,6 +340,24 @@ public class EventController implements Initializable {
     @FXML
     protected void onClickLabel6(){
         setzeAngezeigtesTier(alternativeTiere[letzterScrollbarWert+5]);
+    }
+
+    @FXML
+    protected void onNeuerPflegerClick(){
+
+        Stage stage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("neuer-pfleger-view.fxml"));
+        Scene scene = null;
+        try {
+            scene = new Scene(fxmlLoader.load());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        stage.setTitle("Neuer Pfleger: ");
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
+
     }
 
     private void setzeAngezeigtesTier(Tier tier){
@@ -385,5 +414,9 @@ public class EventController implements Initializable {
 
     public Tier getAktuellAngezeigtesTier(){
         return aktuellAngezeigtesTier;
+    }
+
+    public void updateAktivePfleger(){
+        aktivePfleger.setText("Aktive Pfleger: "+zoohandlung.getPfleger().length);
     }
 }
