@@ -1,71 +1,55 @@
 package com.zoohandlung;
 
+import java.util.Arrays;
+
 public class TestKlasse {
 
 
+    public static void main(String[] args){
 
-    // System.out.println(array);
-    // for(int i = 0; i<matrix.length; i++){
-    //     for(int j = 0; j<matrix[i].length; j++){
-    //         System.out.println(matrix[i][j]);
-    //     }
-    // //}
+        int[] a = new int[]{1,2,3,4,5,6};
 
-    public static boolean zahlVorhanden(int zahl, int[] x){
-        for(int i = 0; i<x.length; i++){
-            if(x[i] == zahl) {return true;}
-        }
+         mergesort(a, 0, 5);
 
-        return false;
+        System.out.println("result: " +Arrays.toString(a));
     }
 
-    public static int wieOftZahlVorhanden(int zahl, int[] x){
-        int y = 0;
-        for(int i = 0; i<x.length; i++){
-            if(x[i] == zahl) {y++;}
-        }
+    public static void mergesort(int[] a, int low, int high){
+        if(high <= low) return;
 
-        return y;
+        mergesort(a, low, (low+high)/2);
+        mergesort(a, (low+high)/2+1, high);
+
+        int[] z = combineArrays(Arrays.copyOfRange(a, low, (low+high)/2+1), Arrays.copyOfRange(a, (low+high)/2+1, high+1));
+
+        for(int n = 0; n<z.length; n++){
+            a[n+low] = z[n];
+        }
     }
 
-    public static int produkt(int[] x){
-        int y = 1;
-        for(int i = 0; i<x.length; i++){
-            y = y*x[i];
-        }
+    public static int[] combineArrays(int[] a, int[] b){
+        int[] z = new int[a.length+ b.length];
+        int na = 0;
+        int nb = 0;
 
-        return y;
-    }
-
-    public static int minIndex(int[] x){
-        int y = Integer.MAX_VALUE;
-        for(int i = 0; i<x.length;i++){
-            if(i<y) {y = i;}
-        }
-
-        return y;
-    }
-
-    public static int summe(int[][] x){
-        int y = 0;
-
-        for(int i = 0; i<x.length; i++){
-            for(int j = 0; j<x[i].length; j++){
-                y += x[i][j];
-            }
-        }
-
-        return y;
-    }
-
-    public static int minZeileIndex(int[][] x){
-        int y = Integer.MAX_VALUE;
-        int z = -1;
-        for(int i = 0; i<x.length; i++){
-            for(int j = 0; j<x[i].length; j++){
-                if(x[i][j] < y){y = x[i][j]; z = i;}
+        for(int x = 0; x < z.length; x++){
+            if(na == a.length){
+                z[x] = b[nb];
+                nb++;
+            }else if(nb == b.length){
+                z[x] = a[na];
+                na++;
+            }else{
+                if(b[nb] < a[na]){
+                    z[x] = b[nb];
+                    nb++;
+                }else {
+                    z[x] = a[na];
+                    na++;
+                }
             }
         }
         return z;
     }
+
 }

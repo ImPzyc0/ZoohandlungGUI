@@ -51,4 +51,12 @@ public abstract class Tier {
     }
 
     public abstract void aktionenAusfuehren(String aktionen);
+
+    public void fuetterTier(){
+        preis = preis/10 + preis;
+    }
+
+    public void macheTierAelter(){
+        alter++;
+    }
 }

@@ -1,5 +1,7 @@
 package com.zoohandlung;
 
+import com.zoohandlung.main.Main;
+
 import java.util.Arrays;
 
 public class Zoohandlung {
@@ -17,7 +19,11 @@ public class Zoohandlung {
     }
 
     public void schliessen(){
-        System.out.println("ka2");
+        for(Tier tier : tiere){
+            tier.macheTierAelter();
+        }
+
+        Main.getMainInstanz().getController().setzeAngezeigtesTier(Main.getMainInstanz().getController().getAktuellAngezeigtesTier());
     }
 
     public void geoffnet(){

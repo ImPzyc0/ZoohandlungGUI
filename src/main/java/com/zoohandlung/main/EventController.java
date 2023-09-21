@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollBar;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -360,7 +361,7 @@ public class EventController implements Initializable {
 
     }
 
-    private void setzeAngezeigtesTier(Tier tier){
+    public void setzeAngezeigtesTier(Tier tier){
         aktuellAngezeigtesTier = tier;
         aktionenButton.setText("Aktionen");
         if(tier == null){

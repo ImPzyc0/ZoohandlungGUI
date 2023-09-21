@@ -2,7 +2,6 @@ package com.zoohandlung.main;
 
 import com.zoohandlung.Pfleger;
 import com.zoohandlung.Tier;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
@@ -32,7 +31,7 @@ public class AktionenController implements Initializable {
         }
         tier.setAktionenAusgefuehrt(true);
         manager.getZoohandlung().pflegerVersorgtTier(manager.getZoohandlung().getPfleger(pfleger.getValue()));
-
+        tier.fuetterTier();
         tier.aktionenAusfuehren(aktion.getValue());
 
         Stage stage = (Stage) pfleger.getScene().getWindow();
@@ -40,6 +39,7 @@ public class AktionenController implements Initializable {
         stage.close();
 
         controller.updateAktivePfleger();
+        controller.setzeAngezeigtesTier(controller.getAktuellAngezeigtesTier());
     }
 
     @Override
