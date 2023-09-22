@@ -10,7 +10,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollBar;
 import javafx.scene.control.TextField;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -96,14 +95,23 @@ public class EventController implements Initializable {
         }
     }
 
+    public void kannGeschlossenWerden(){
+        oeffnenButton.setText("Schließen");
+    }
+
     @FXML
     protected void onOeffnenButtonClick() {
-        oeffnenButton.setText(oeffnenButton.getText().equals("Öffnen") ? "Schließen":"Öffnen");
+        if((oeffnenButton.getText().equals("Offen"))&& !manager.kannSchließen()){
+            return;
+        }
+        oeffnenButton.setText(oeffnenButton.getText().equals("Öffnen") ? "Offen": "Öffnen");
         istOffen.setText(oeffnenButton.getText().equals("Öffnen") ? "Handlung ist geschlossen":"Handlung ist offen");
         updateAktivePfleger();
         if(istOffen.getText().equals("Handlung ist offen")){
             zoohandlung.geoffnet();
             aktionenButton.setText("Aktionen");
+
+            manager.starteSchliessenTimer();
         }else{
             zoohandlung.schliessen();
         }

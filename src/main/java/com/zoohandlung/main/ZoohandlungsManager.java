@@ -2,6 +2,10 @@ package com.zoohandlung.main;
 
 import com.zoohandlung.Katze;
 import com.zoohandlung.Zoohandlung;
+import javafx.application.Platform;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class ZoohandlungsManager {
 
@@ -9,6 +13,14 @@ public class ZoohandlungsManager {
     //der eigentlich nur die Zoohandlung regelt
 
     private Zoohandlung zoohandlung;
+
+    public static long MINIMALE_OEFFNUNGSZEIT = 5000;
+
+    public boolean kannSchließen() {
+        return kannSchließen;
+    }
+
+    private boolean kannSchließen = false;
 
     public void ladZoohandlung(){
         //Vorerst erstellt nur eine Zoohandlung
@@ -29,4 +41,25 @@ public class ZoohandlungsManager {
     }
 
     public Zoohandlung getZoohandlung(){return zoohandlung;}
+
+    public void starteSchliessenTimer(){
+        kannSchließen = false;
+        Timer timer = new Timer();
+
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        kannSchließen = true;
+                        Main.getMainInstanz().getController().kannGeschlossenWerden();
+                    }
+                });
+
+            }
+        }, MINIMALE_OEFFNUNGSZEIT);
+
+    }
 }

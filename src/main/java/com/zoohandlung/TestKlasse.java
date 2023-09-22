@@ -7,9 +7,9 @@ public class TestKlasse {
 
     public static void main(String[] args){
 
-        int[] a = new int[]{1,2,3,4,5,6};
+        int[] a = new int[]{33,40,87,56,15,7,12,34,17,99,10,52};
 
-         mergesort(a, 0, 5);
+        mergesort(a, 0, a.length-1);
 
         System.out.println("result: " +Arrays.toString(a));
     }
