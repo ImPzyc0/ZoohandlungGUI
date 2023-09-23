@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox id="VBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="347.0" minWidth="583.0" prefHeight="462.0" prefWidth="583.0" spacing="20.0" style="-fx-background-color: #f2f2f2;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+   <children>
+      <AnchorPane prefHeight="455.0" prefWidth="606.0">
+         <children>
+            <Label layoutX="135.0" layoutY="-11.0" prefHeight="77.0" prefWidth="273.0" text="Willkommen zur Zoohandlung!" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="-6.0" layoutY="47.0" prefHeight="77.0" prefWidth="583.0" style="-fx-text-alignment: center;" text="Du hast 8 Starttiere, welche dir untern angezeigt werden. Du kannst zwischen allen Tieren scrollen und sie dir anzeigen lassen" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+            </Label>
+            <Label layoutX="135.0" layoutY="108.0" prefHeight="98.0" prefWidth="273.0" style="-fx-text-alignment: center;" text="Du kannst du Zoohandlung öffnen und nach 5 Sekunden wieder schließen!" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="3.0" layoutY="184.0" prefHeight="267.0" prefWidth="571.0" text="Während die Zoohandlung offen ist, kannst du jedes Tier jeweils 1 mal pro Tag mit einem Pfleger füttern(Aktionen Knopf). Dieser Pfleger ist dann für den Tag blockert. Wenn du ein Tier fütterst, muss es auch aktiv werden und etwas tun. Du suchst eine Aktion aus, das Tier mach ein Geräusch und der Preis des Tieres steigt. Wenn du ein Tier nichtmehr willst, kannst du es verkaufen, und von dem Geld dann entweder ein neues Tier erstellen oder einen neues Pfleger, mit welchem du mehr Tiere pro Tag füttern kannst. Natürlich werden die Tiere auch älter. Wenn du ein Tier suchen willst, dann klick einfach die jeweiligen Knöpfe. Suchst du nach einem spezifischen Preis oder Alter, musst du ein &quot;=&quot; vor die Zahl tun. " textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>

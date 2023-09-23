@@ -46,7 +46,7 @@ public class Hund extends Tier {
     }
 
     @Override
-    public void seiWütend() {
+    public void seiWuetend() {
         macheGeraeusche();
     }
 

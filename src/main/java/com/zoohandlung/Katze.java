@@ -33,7 +33,7 @@ public class Katze extends Tier {
     }
 
     @Override
-    public void seiWütend() {
+    public void seiWuetend() {
         macheGeraeusche();
     }
 
@@ -47,7 +47,7 @@ public class Katze extends Tier {
         if(aktionen.equals("macheGeräusche")){
             macheGeraeusche();
         }else{
-            seiWütend();
+            seiWuetend();
         }
     }
 

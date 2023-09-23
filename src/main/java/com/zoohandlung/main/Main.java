@@ -49,6 +49,14 @@ public class Main extends Application {
         stage.setResizable(false);
         stage.setOnCloseRequest(e -> System.exit(0));
         stage.show();
+
+        Stage stage2 = new Stage();
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("help-view.fxml"));
+        Scene scene2 = new Scene(loader.load());
+        stage2.setTitle("Hilfe");
+        stage2.setScene(scene2);
+        stage2.setResizable(false);
+        stage2.show();
     }
 
     public static void main(String[] args) {
