@@ -22,11 +22,9 @@ public abstract class Tier {
         this.preis = preis;
     }
 
-    public abstract void macheGeräusche();
+    public abstract void macheGeraeusche();
 
-    public void seiWütend(){
-        System.out.println("ka");
-    }
+    public abstract void seiWütend();
 
     public String getName() {
         return name;

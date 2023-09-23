@@ -1,5 +1,8 @@
 package com.zoohandlung;
 
+import com.zoohandlung.main.Main;
+import javafx.scene.media.AudioClip;
+
 public class Katze extends Tier {
 
     public String getRasse() {
@@ -24,8 +27,14 @@ public class Katze extends Tier {
 
 
     @Override
-    public void macheGeräusche() {
-        System.out.println("miau");
+    public void macheGeraeusche() {
+        AudioClip clip = new AudioClip(Main.getMainInstanz().getClass().getResource("sleepy-cat-purring-and-meowing-39248.mp3").toExternalForm());
+        clip.play();
+    }
+
+    @Override
+    public void seiWütend() {
+        macheGeraeusche();
     }
 
     @Override
@@ -36,7 +45,7 @@ public class Katze extends Tier {
     @Override
     public void aktionenAusfuehren(String aktionen) {
         if(aktionen.equals("macheGeräusche")){
-            macheGeräusche();
+            macheGeraeusche();
         }else{
             seiWütend();
         }

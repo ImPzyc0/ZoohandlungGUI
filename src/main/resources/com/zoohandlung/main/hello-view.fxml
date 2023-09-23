@@ -33,7 +33,7 @@
                      <Font name="System Bold" size="13.0" />
                   </font>
                </Label>
-               <Label fx:id="istOffen" layoutX="336.0" layoutY="5.0" prefHeight="56.0" prefWidth="98.0" style="-fx-background-color: white; -fx-text-alignment: center;" text="Handlung ist Geschlossen" textAlignment="CENTER" wrapText="true">
+               <Label fx:id="istOffen" layoutX="336.0" layoutY="5.0" prefHeight="56.0" prefWidth="98.0" style="-fx-background-color: white; -fx-text-alignment: center;" text="Handlung ist geschlossen" textAlignment="CENTER" wrapText="true">
                   <font>
                      <Font name="System Bold" size="15.0" />
                   </font>

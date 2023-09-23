@@ -24,7 +24,6 @@ public class AktionenController implements Initializable {
 
     @FXML
     protected void onAktion() {
-
         if(pfleger.getValue() == null || aktion.getValue() == null){
             errorLabel.setText("Bitte Pfleger und Aktion auswählen!");
             return;
