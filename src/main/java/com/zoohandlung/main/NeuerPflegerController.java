@@ -6,13 +6,14 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class NeuerPflegerController {
-
+    //Controller Klasse für einen neuen Pfleger
     @FXML
     private TextField pflegerName;
 
     @FXML
     private Label errorLabel;
 
+    //Wenn der neuer Pfleger Button gedrückt wurde
     @FXML
     protected void onButtonClick(){
 

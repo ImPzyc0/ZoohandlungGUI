@@ -25,7 +25,7 @@ public class ZoohandlungsManager {
     public void ladZoohandlung(){
         //Vorerst erstellt nur eine Zoohandlung
 
-        zoohandlung = new Zoohandlung("lll");
+        zoohandlung = new Zoohandlung("|");
 
         zoohandlung.neuesTier(new Katze("Nieve 1",201,200, "Orange"));
         zoohandlung.neuesTier(new Katze("Luna 2",202, 201,"Orange"));

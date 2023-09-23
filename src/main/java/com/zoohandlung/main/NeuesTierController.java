@@ -15,7 +15,7 @@ import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public class NeuesTierController implements Initializable {
-    //Der Controller wenn ein neues Tier gemacht wird, damit der EventController nicht zu voll ist
+    //Der Controller wenn ein neues Tier gemacht wird
 
     @FXML
     private ChoiceBox<String> tiere = new ChoiceBox<>();
@@ -76,6 +76,7 @@ public class NeuesTierController implements Initializable {
         }
     }
 
+    //Zeige die Stackpanes für die unterschiedlichen Tiere
     protected void zeigeHundView(){
         hundPane.setVisible(true);
         pferdPane.setVisible(false);
@@ -91,7 +92,7 @@ public class NeuesTierController implements Initializable {
         pferdPane.setVisible(true);
         katzePane.setVisible(false);
     }
-
+    //Wenn der Enter Button für ein neues tier gedrückt wird
     @FXML
     protected void onEnter() {
 

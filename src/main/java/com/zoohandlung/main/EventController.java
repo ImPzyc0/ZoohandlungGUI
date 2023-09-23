@@ -35,6 +35,7 @@ public class EventController implements Initializable {
     private final Zoohandlung zoohandlung;
     private Tier[] alternativeTiere = null;
 
+    //Der Wert des Scrollbar
     private int letzterScrollbarWert = 0;
 
     public void setAktionenFensterOffen(boolean aktionenFensterOffen) {
@@ -232,7 +233,7 @@ public class EventController implements Initializable {
                 break;
         }
     }
-
+    //Alternative Tiere ist ein Array mit den Tieren nach dem aktuell angezeigtem Modus
     public void updateAlternativeTiere(){
         Tier[] tiere;
         switch(sortiertNachModus){
@@ -265,7 +266,7 @@ public class EventController implements Initializable {
         updateScrollBar();
         updateTierLabels();
     }
-
+    //Setzt den Wert und das Maximum der Scrollbar
     private void updateScrollBar(){
         tierScrollBar.setMax(alternativeTiere.length-6);
         tierScrollBar.setValue(0);
@@ -280,7 +281,7 @@ public class EventController implements Initializable {
             setzeAngezeigtesTier(null);
         }
     }
-
+    //Zeigt updatet die 6 Labels mit den Tiere je nach Liste
     private void updateTierLabels(){
         //Labels neu text setzen
         for(int i = 0; i<6; i++){
@@ -326,6 +327,7 @@ public class EventController implements Initializable {
 
     }
     //Deutlich schöner als eine Method die das rechnerisch überprüft
+    //Zeigt die Tiere an
     @FXML
     protected void onClickLabel1(){
         setzeAngezeigtesTier(alternativeTiere[letzterScrollbarWert]);
@@ -350,7 +352,7 @@ public class EventController implements Initializable {
     protected void onClickLabel6(){
         setzeAngezeigtesTier(alternativeTiere[letzterScrollbarWert+5]);
     }
-
+    //Fenster für neue Pfleger öffnen
     @FXML
     protected void onNeuerPflegerClick(){
 
@@ -368,7 +370,7 @@ public class EventController implements Initializable {
         stage.show();
 
     }
-
+    //Setzt die Labels nach Tier auf das geklicked wurde
     public void setzeAngezeigtesTier(Tier tier){
         aktuellAngezeigtesTier = tier;
         aktionenButton.setText("Aktionen");
@@ -404,6 +406,7 @@ public class EventController implements Initializable {
         preis.setText("Preis: "+ tier.getPreis()+ "$");
     }
 
+    //Sortiert Liste um für das anzeigen
     private Tier[] sortiereListeUm(Tier[] arr){
         Tier[] arrUmsortiert = new Tier[arr.length];
         for(int i = 0; i<arr.length; i++){
@@ -412,6 +415,7 @@ public class EventController implements Initializable {
         return arrUmsortiert;
     }
 
+    //Setzt den Text der Buttons und Labels nach Modus
     public void setzeSortiertNachModus(int sortiertNachModus) {
         suchenNach.setText("");
         //Labels updaten nach Algorithmus
@@ -420,7 +424,7 @@ public class EventController implements Initializable {
         sortiertNach.setText("Sortiert nach:    "+sortiertNachModusText[sortiertNachModus-1 < 0 ? sortiertNachModusMax: sortiertNachModus-1]);
         this.sortiertNachModus = sortiertNachModus;
     }
-
+    //Das Tier das aktuell angezeigt wird
     public Tier getAktuellAngezeigtesTier(){
         return aktuellAngezeigtesTier;
     }

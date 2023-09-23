@@ -22,6 +22,7 @@ public class AktionenController implements Initializable {
     private EventController controller;
     private ZoohandlungsManager manager;
 
+    //Das Aktionen fenster für das füttern und das ausführen von Aktionen
     @FXML
     protected void onAktion() {
         if(pfleger.getValue() == null || aktion.getValue() == null){

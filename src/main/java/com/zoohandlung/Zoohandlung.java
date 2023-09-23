@@ -10,6 +10,10 @@ public class Zoohandlung {
     private Pfleger[] aktivePfleger = new Pfleger[0];
     private Tier[] tiere = new Tier[0];
 
+    public String getLadenId() {
+        return ladenId;
+    }
+
     private final String ladenId;
     //Geld startet bei 0 da die Anfängertiere kosten und abgerechnet werden
     private double geld = 1600+7+6+5+4+3+2+1;
@@ -99,6 +103,7 @@ public class Zoohandlung {
         return geld;
     }
 
+    //Tiere der Zoohandlung nach unterschiedlichen Kriterien bekommen
     public Tier[] getTiere(){
         return tiere.clone();
     }
